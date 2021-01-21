@@ -1,2 +1,5 @@
-# PythonCodeExecises
-Test and creating python samples to do Katas with and to keep. readme of good practises
+# Introduction
+Create simple unit testing sample and understand good naming and generation of samples ...
+
+The inspiration for this is taken from this article https://testdriven.io/blog/modern-tdd/ 
+
