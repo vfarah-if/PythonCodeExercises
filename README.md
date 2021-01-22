@@ -11,6 +11,6 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
 
 3. Documentation can be found https://docs.pytest.org/en/stable/getting-started.html
 
-4. Running the tests through python I setup `python -m pytest `
+4. Running the tests through python I setup `python3 -m pytest `
 
    
