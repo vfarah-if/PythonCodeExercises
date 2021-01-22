@@ -17,7 +17,23 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
 5. VSCode Tips and tricks:
 
    - With **vscode**, I needed to setup my interpreter path to utilise Python 3.9.1 for everythign to work with the correct version of Python. This can be found on the bottom left panel of your IDE footer
+
    - Setting up **text explorer**, add the extension python test explorer and then see this [https://code.visualstudio.com/docs/python/testing](https://code.visualstudio.com/docs/python/testing) for more information
+
+   - Configure settings with
+
+     ```
+     {
+         "python.pythonPath": "/opt/local/bin/python3",
+         "python.testing.pytestArgs": [
+             "tests"
+         ],
+         "python.testing.unittestEnabled": false,
+         "python.testing.nosetestsEnabled": false,
+         "python.testing.pytestEnabled": true,
+         "python.testing.autoTestDiscoverOnSaveEnabled": true
+     }
+     ```
 
 6. Install pip with python 3 or upgrade pip to the latest
 
@@ -26,3 +42,6 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
    python3 -m pip install --upgrade pip
    ```
 
+
+7. Create a virtual environment using ` python3 -m venv ./venv/local`
+8. Setting up a project structure should resemble https://docs.python-guide.org/writing/structure/
