@@ -20,9 +20,9 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
 
    - Setting up **text explorer**, add the extension python test explorer and then see this [https://code.visualstudio.com/docs/python/testing](https://code.visualstudio.com/docs/python/testing) for more information
 
-   - Configure settings with
+   - Configure settings with [Pytest](https://docs.pytest.org/en/stable/contents.html)
 
-     ```
+     ```json
      {
          "python.pythonPath": "/opt/local/bin/python3",
          "python.testing.pytestArgs": [
@@ -37,11 +37,13 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
 
 6. Install pip with python 3 or upgrade pip to the latest
 
-   ```
+   ```shell
    python3 -m pip install
    python3 -m pip install --upgrade pip
    ```
 
 
-7. Create a virtual environment using ` python3 -m venv ./venv/local`
+7. Create a virtual environment using ` python3 -m venv ./opt/local`
 8. Setting up a project structure should resemble https://docs.python-guide.org/writing/structure/
+9. Make sure if you have folder that you always include `__init__.py`files which can include paths, setting variables or just logging - see more [here]( https://www.datacamp.com/community/tutorials/role-underscore-python)
+10. 
