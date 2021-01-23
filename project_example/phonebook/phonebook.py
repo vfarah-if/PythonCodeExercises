@@ -9,6 +9,6 @@ class PhoneBook:
     def lookup(self, name: str):
         return self.phone_numbers[name]
 
-    def is_consistent(self):
+    def isConsistent(self):
         uniqueValues = set(self.phone_numbers.values());
         return len(self.phone_numbers) == len(uniqueValues);
