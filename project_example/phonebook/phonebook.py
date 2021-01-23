@@ -10,4 +10,5 @@ class PhoneBook:
         return self.phone_numbers[name]
 
     def is_consistent(self):
-         return self.phone_numbers != None
+        uniqueValues = set(self.phone_numbers.values());
+        return len(self.phone_numbers) == len(uniqueValues);
