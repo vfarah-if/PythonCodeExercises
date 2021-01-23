@@ -1,4 +1,4 @@
-from phonebook.phonebook import PhoneBook
+from contacts.phonebook import PhoneBook
 from unittest import TestCase
 
 
