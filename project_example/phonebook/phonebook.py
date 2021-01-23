@@ -9,3 +9,5 @@ class PhoneBook:
     def lookup(self, name: str):
         return self.phone_numbers[name]
 
+    def is_consistent(self):
+         return self.phone_numbers != None

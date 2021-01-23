@@ -6,7 +6,7 @@ class PhoneBookTest(unittest.TestCase):
     def setUp(self) -> None:
         self.phonebook = PhoneBook()
 
-    # Example of where you 
+    # Example of where you clean up resource
     def tearDown(self) -> None:
         return super().tearDown()
 
@@ -21,6 +21,6 @@ class PhoneBookTest(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.phonebook.lookup("UserThatDoesNotExist")
 
-    @unittest.skip("Showcase the skip mechanism")
+    # @unittest.skip("Showcase the skip mechanism")
     def test_phonebook_is_consistent(self):
         self.assertTrue(self.phonebook.is_consistent())
