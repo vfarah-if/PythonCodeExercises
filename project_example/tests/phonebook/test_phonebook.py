@@ -11,17 +11,17 @@ class PhoneBookTest(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
 
-    def setupWith(self, name, phone_no):
+    def setupPhoneBookWith(self, name, phone_no):
         self.phonebook.add(name, phone_no)
 
     def test_add_creates_a_phone_book_entry(self):
-        self.setupWith("Bob", "1234")
+        self.setupPhoneBookWith("Bob", "1234")
 
         self.assertEqual(len(self.phonebook.phone_numbers), 1)
         self.assertDictEqual(self.phonebook.phone_numbers, {"Bob": "1234"})
 
     def test_lookup_by_name(self):
-        self.setupWith("Bob", "12345")
+        self.setupPhoneBookWith("Bob", "12345")
 
         number = self.phonebook.lookup("Bob")
 
@@ -33,16 +33,16 @@ class PhoneBookTest(unittest.TestCase):
 
     # @unittest.skip("Showcase the skip mechanism")
     def test_is_consistent_when_there_are_no_duplicates(self):
-        self.setupWith(name="Bob", phone_no="12345")
+        self.setupPhoneBookWith(name="Bob", phone_no="12345")
 
-        self.setupWith("Sue", "23456")
+        self.setupPhoneBookWith("Sue", "23456")
 
         self.assertTrue(self.phonebook.is_consistent())
 
     def test_is_not_consistent_when_there_are_duplicate_values(self):
-        self.setupWith(name="Bob", phone_no="12345")
+        self.setupPhoneBookWith(name="Bob", phone_no="12345")
         self.assertTrue(self.phonebook.is_consistent())
 
-        self.setupWith("Jane", "12345")
+        self.setupPhoneBookWith("Jane", "12345")
 
         self.assertFalse(self.phonebook.is_consistent())
