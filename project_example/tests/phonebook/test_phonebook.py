@@ -17,8 +17,8 @@ class PhoneBookTest(unittest.TestCase):
     def test_add_creates_a_phone_book_entry(self):
         self.setUpPhoneBookWith("Bob", "1234")
 
-        self.assertEqual(len(self.phonebook.phone_numbers), 1)
-        self.assertDictEqual(self.phonebook.phone_numbers, {"Bob": "1234"})
+        self.assertEqual(len(self.phonebook.phoneNumbers), 1)
+        self.assertDictEqual(self.phonebook.phoneNumbers, {"Bob": "1234"})
 
     def test_lookup_by_name(self):
         self.setUpPhoneBookWith("Bob", "12345")
