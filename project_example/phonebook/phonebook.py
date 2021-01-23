@@ -3,8 +3,8 @@ class PhoneBook:
     def __init__(self):
         self.phoneNumbers = {}
 
-    def add(self, name: str, phone_no: str):
-        self.phoneNumbers[name.strip()] = phone_no.strip()
+    def add(self, name: str, phone_no: any):
+        self.phoneNumbers[name.strip()] = phone_no
 
     def lookup(self, name: str):
         return self.phoneNumbers[name]

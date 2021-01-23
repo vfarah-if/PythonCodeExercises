@@ -1,8 +1,8 @@
 from phonebook.phonebook import PhoneBook
-import unittest
+from unittest import TestCase
 
 
-class PhoneBookTest(unittest.TestCase):
+class PhoneBookTest(TestCase):
 
     def setUp(self) -> None:
         self.phonebook = PhoneBook()
@@ -11,7 +11,7 @@ class PhoneBookTest(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
 
-    def setUpPhoneBookWith(self, name, phone_no):
+    def setUpPhoneBookWith(self, name: str, phone_no):
         self.phonebook.add(name, phone_no)
 
     def test_add_creates_a_phone_book_entry(self):
@@ -19,6 +19,12 @@ class PhoneBookTest(unittest.TestCase):
 
         self.assertEqual(len(self.phonebook.phoneNumbers), 1)
         self.assertDictEqual(self.phonebook.phoneNumbers, {"Bob": "1234"})
+
+    def test_add_number_phone_book_entry(self):
+        self.setUpPhoneBookWith("Bob", 1234)
+
+        self.assertEqual(len(self.phonebook.phoneNumbers), 1)
+        self.assertDictEqual(self.phonebook.phoneNumbers, {"Bob": 1234})
 
     def test_lookup_by_name(self):
         self.setUpPhoneBookWith("Bob", "12345")
