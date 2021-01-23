@@ -1,4 +1,5 @@
 class PhoneBook:
+    
     def __init__(self):
         self.phone_numbers = {}
 
@@ -7,3 +8,4 @@ class PhoneBook:
 
     def lookup(self, name: str):
         return self.phone_numbers[name]
+

@@ -2,16 +2,25 @@ from phonebook.phonebook import PhoneBook
 import unittest
 
 class PhoneBookTest(unittest.TestCase):
-    def test_lookup_by_name(self):
-        phonebook = PhoneBook()
-        phonebook.add("Bob", "12345")
+
+    def setUp(self) -> None:
+        self.phonebook = PhoneBook()
+
+    # Example of where you 
+    def tearDown(self) -> None:
+        return super().tearDown()
+
+    def test_lookup_by_name(self):        
+        self.phonebook.add("Bob", "12345")
         
-        number = phonebook.lookup("Bob")
+        number = self.phonebook.lookup("Bob")
         
         self.assertEqual("12345", number)
 
     def test_raises_key_error_when_name_not_found(self):
-        phonebook = PhoneBook()
-
         with self.assertRaises(KeyError):
-            phonebook.lookup("UserThatDoesNotExist")
+            self.phonebook.lookup("UserThatDoesNotExist")
+
+    @unittest.skip("Showcase the skip mechanism")
+    def test_phonebook_is_consistent(self):
+        self.assertTrue(self.phonebook.is_consistent())
