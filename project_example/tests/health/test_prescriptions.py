@@ -16,11 +16,15 @@ class DaysAgoShould(TestCase):
 
 
 class PresciptionShould(TestCase):
-    def test_days_taken_exclude_future_dates(self):
-        prescription = Prescription(
+    def setUp(self) -> None:
+        self.prescription = Prescription(
             description="Codeine", dispenseDate=daysAgo(days=2), daysSupply=4)
 
-        actual = list(prescription.daysTaken())
+    def test_days_taken_exclude_future_dates(self):
+        actual = list(self.prescription.daysTaken())
 
         self.assertListEqual([daysAgo(days=2), daysAgo(days=1)], actual)
-        self.assertEqual(prescription.description, "Codeine")
+
+    def test_prescription_as_string(self):
+        self.assertEqual(self.prescription.toString(
+        ), "Codeine should be dispensed on the '2021-01-21' with only 4 days supply")
