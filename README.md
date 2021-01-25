@@ -44,6 +44,18 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
 
 
 7. Create a virtual environment using ` python3 -m venv ./opt/local`
+
 8. Setting up a project structure should resemble https://docs.python-guide.org/writing/structure/
+
 9. Make sure if you have folder that you always include `__init__.py`files which can include paths, setting variables or just logging - see more [here]( https://www.datacamp.com/community/tutorials/role-underscore-python)
-10. 
+
+10. **Pytest** install all things needed:
+
+    ```
+    pip install pytest
+    pip install pytest-sugar
+    pip install pytest-cov
+    ```
+
+11. ...
+
