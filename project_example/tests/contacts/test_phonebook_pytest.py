@@ -1,5 +1,4 @@
 from pytest import raises, fixture
-import pytest
 from contacts.phonebook import PhoneBook
 
 @fixture
@@ -26,7 +25,6 @@ def test_lookup_by_name(phonebook):
     actual = phonebook.lookup("Bob")
 
     assert actual == 1234
-
 
 def test_raises_key_error_when_name_not_found(phonebook):
     with raises(KeyError):

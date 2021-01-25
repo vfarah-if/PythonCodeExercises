@@ -1,5 +1,3 @@
-import pytest
-
 from arithmatic.another_sum import another_sum
 
 def test_add_two_values():
