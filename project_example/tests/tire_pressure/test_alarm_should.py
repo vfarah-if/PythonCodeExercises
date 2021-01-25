@@ -7,26 +7,8 @@ def test_alarm_is_off_by_default(alarm: Alarm):
     assert alarm.isAlarmOn == False
 
 
-class StubLowPressureSensor:
-    def samplePressure(self):
-        return 10
-
-
-class StubHighPressureSensor:
-    def samplePressure(self):
-        return 100
-
-
-class StubNormalPressureSensor:
-    def samplePressure(self):
-        return 18
-
-
 def test_low_pressure_activates_alarm():
-    # alarm = Alarm(sensor = StubLowPressureSensor())
-    stubSensor = Mock(Sensor)
-    stubSensor.samplePressure.return_value = 10
-    alarm = Alarm(sensor=stubSensor)
+    alarm = Alarm(sensor=stubSensor(10))
 
     alarm.check()
 
@@ -34,10 +16,7 @@ def test_low_pressure_activates_alarm():
 
 
 def test_high_pressure_activates_alarm():
-    # alarm = Alarm(sensor=StubHighPressureSensor())
-    stubSensor = Mock(Sensor)
-    stubSensor.samplePressure.return_value = 100
-    alarm = Alarm(sensor=stubSensor)
+    alarm = Alarm(sensor=stubSensor(100))
 
     alarm.check()
 
@@ -45,10 +24,13 @@ def test_high_pressure_activates_alarm():
 
 
 def test_valid_pressure_does_notactivates_alarm():
-    # alarm = Alarm(sensor=StubNormalPressureSensor())
-    stubSensor = Mock(Sensor)
-    stubSensor.samplePressure.return_value = 18
-    alarm = Alarm(sensor=stubSensor)
+    alarm = Alarm(sensor=stubSensor(18))
     alarm.check()
 
     assert alarm.isAlarmOn == False
+
+
+def stubSensor(pressure: int):
+    stubSensor = Mock(Sensor)
+    stubSensor.samplePressure.return_value = pressure
+    return stubSensor
