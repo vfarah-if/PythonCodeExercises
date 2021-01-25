@@ -2,11 +2,12 @@ from pytest import raises, fixture
 from contacts.phonebook import PhoneBook
 
 
-@fixture
-def phonebook():
-    # Fixture document comment
-    "Provides an empty phonebook"
-    return PhoneBook()
+# Moved to conftest in the folder to share but can be used here
+# @fixture
+# def phonebook():
+#     # Fixture document comment
+#     "Provides an empty phonebook"
+#     return PhoneBook()
 
 
 def test_add_creates_a_phone_book_entry(phonebook):
