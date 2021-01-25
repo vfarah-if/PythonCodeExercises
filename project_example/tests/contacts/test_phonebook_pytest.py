@@ -1,4 +1,5 @@
 from pytest import raises, fixture
+import pytest
 from contacts.phonebook import PhoneBook
 
 
@@ -9,7 +10,7 @@ from contacts.phonebook import PhoneBook
 #     "Provides an empty phonebook"
 #     return PhoneBook()
 
-
+@pytest.mark.slow
 def test_add_creates_a_phone_book_entry(phonebook):
     phonebook.add("Bob", "1234")
 
