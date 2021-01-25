@@ -31,6 +31,6 @@ def test_valid_pressure_does_notactivates_alarm():
 
 
 def stubSensor(pressure: int):
-    stubSensor = Mock(Sensor)
-    stubSensor.samplePressure.return_value = pressure
-    return stubSensor
+    result = Mock(Sensor)
+    result.samplePressure.return_value = pressure
+    return result
