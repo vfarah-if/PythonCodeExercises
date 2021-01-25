@@ -36,3 +36,10 @@ def test_lookup_by_name(phonebook):
 def test_raises_key_error_when_name_not_found(phonebook):
     with raises(KeyError):
         phonebook.lookup("UserThatDoesNotExist")
+
+def test_is_consistent_when_there_are_no_duplicates(phonebook):
+    phonebook.add("Bob",12345)
+    assert phonebook.isConsistent() == True
+    
+    phonebook.add("Sue",23456)
+    assert phonebook.isConsistent() == True
