@@ -57,4 +57,7 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
     pip install pytest-cov
     ```
     - `pytest --fixtures` gives a list of fixtures, including one built up with setup fixtures that may have doc comments
+    - `pytest --markers` gives a list of markers to help decorate functions with
+    - `pip install pytest-html` and output html to show reports and output an html report `pytest --html=report.html`
+    - 
 
