@@ -1,4 +1,4 @@
-import pytest
+from pytest import raises
 from contacts.phonebook import PhoneBook
 
 
@@ -31,5 +31,5 @@ def test_lookup_by_name():
 def test_raises_key_error_when_name_not_found():
     phonebook = PhoneBook()
 
-    with pytest.raises(KeyError):
+    with raises(KeyError):
         phonebook.lookup("UserThatDoesNotExist")
