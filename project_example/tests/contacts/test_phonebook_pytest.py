@@ -1,9 +1,13 @@
 from pytest import raises, fixture
 from contacts.phonebook import PhoneBook
 
+
 @fixture
 def phonebook():
-     return PhoneBook()
+    # Fixture document comment
+    "Provides an empty phonebook"
+    return PhoneBook()
+
 
 def test_add_creates_a_phone_book_entry(phonebook):
     phonebook.add("Bob", "1234")
@@ -25,6 +29,7 @@ def test_lookup_by_name(phonebook):
     actual = phonebook.lookup("Bob")
 
     assert actual == 1234
+
 
 def test_raises_key_error_when_name_not_found(phonebook):
     with raises(KeyError):

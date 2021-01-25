@@ -56,6 +56,5 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
     pip install pytest-sugar
     pip install pytest-cov
     ```
-
-11. ...
+    - `pytest --fixtures` gives a list of fixtures, including one built up with setup fixtures that may have doc comments
 
