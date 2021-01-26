@@ -25,10 +25,10 @@ def test_high_pressure_activates_alarm():
 # REMARKS: Patch makes more sense of the constructor does not allow for sensor to be assigned
 def test_high_pressure_activates_alarm_using_monkeypatch():
     # REMARKS refers to the modules in the patch param
-    with patch("tire_pressure.alarm.Sensor") as sensorClass:
+    with patch("tire_pressure.alarm.Sensor") as sensorType:
         sensorInstance = Mock()
         sensorInstance.samplePressure.return_value = 22
-        sensorClass.return_value = sensorInstance
+        sensorType.return_value = sensorInstance
 
         alarm = Alarm()
         alarm.check()
@@ -37,10 +37,11 @@ def test_high_pressure_activates_alarm_using_monkeypatch():
 
 
 @patch("tire_pressure.alarm.Sensor")
-def test_low_pressure_activates_alarm_using_monkeypatch_decorator(sensorClass):
+def test_low_pressure_activates_alarm_using_monkeypatch_decorator(sensorType):
+    print(sensorType)
     sensorInstance = Mock()
     sensorInstance.samplePressure.return_value = 14
-    sensorClass.return_value = sensorInstance
+    sensorType.return_value = sensorInstance
 
     alarm = Alarm()
     alarm.check()
