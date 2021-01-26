@@ -1,3 +1,4 @@
 def tennisScore(playerOneScore: int, playerTwoScore: int):
     scoreNames = ["Love", "Fifteen", "Thirty"]
-    return scoreNames[playerOneScore]+"-All"
+    if playerOneScore == playerTwoScore:
+        return scoreNames[playerOneScore]+"-All"
