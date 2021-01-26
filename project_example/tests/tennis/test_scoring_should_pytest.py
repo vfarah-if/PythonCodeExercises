@@ -9,6 +9,7 @@ import pytest
                           (2, 2, "Thirty-All"),
                           (3, 3, "Forty-All"),
                           (1, 0, "Advantage Player 1"),
+                          (0, 1, "Advantage Player 2"),
                           ])
 def test_scoring(playerOneScore: int, playerTwoScore: int, expectedResult: str):
     actualScore = tennisScore(playerOneScore, playerTwoScore)

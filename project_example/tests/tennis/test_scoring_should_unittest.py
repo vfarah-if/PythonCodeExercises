@@ -12,6 +12,7 @@ class TennisScoringShould(TestCase):
             (2, 2, "Thirty-All"),
             (3, 3, "Forty-All"),
             (1, 0, "Advantage Player 1"),
+            (0, 1, "Advantage Player 2"),
         ]
         for playerOnePoints, playerTwoPoints, expectedResult in testCases:
             with self.subTest(f"{playerOnePoints}{playerTwoPoints} -> {expectedResult}"):
