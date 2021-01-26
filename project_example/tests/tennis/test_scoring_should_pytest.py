@@ -3,13 +3,14 @@ import pytest
 
 
 def tennisScore(playerOneScore: int, playerTwoScore: int):
-    scoreNames = ["Love", "Fifteen"]
+    scoreNames = ["Love", "Fifteen", "Thirty"]
     return scoreNames[playerOneScore]+"-All"
 
 
 @pytest.mark.parametrize("playerOneScore, playerTwoScore, expectedResult",
                          [(0, 0, "Love-All"),
                           (1, 1, "Fifteen-All"),
+                          (2, 2, "Thirty-All"),
                           ])
 def test_scoring(playerOneScore: int, playerTwoScore: int, expectedResult: str):
     actualScore = tennisScore(playerOneScore, playerTwoScore)
