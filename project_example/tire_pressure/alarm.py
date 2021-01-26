@@ -11,7 +11,7 @@ class Alarm:
     @property
     def isAlarmOn(self):
         return self._isAlarmOn
-
+    
     def check(self):
         pressure = self._sensor.samplePressure()
         if pressure < self._lowPressureThreshold or pressure > self._highPressureThreshold:
