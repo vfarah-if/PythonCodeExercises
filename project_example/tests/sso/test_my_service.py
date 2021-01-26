@@ -33,3 +33,19 @@ def test_invalid_sso_should_get_pleaase_sign_in_response():
 
     assert actualResponse.text == "Please sign in"
 
+def test_sso_receives_the_correct_token():
+    mockSSORegistry = Mock(SingleSignOnRegistry)
+    correctToken = SSOToken();
+    mockSSORegistry.isValid = Mock(side_effect=confirmToken(correctToken))
+    myService= MyService(mockSSORegistry)
+
+    myService.handle(Request("Vincent"), correctToken)
+
+    mockSSORegistry.isValid.assert_called()
+
+
+def confirmToken(correctToken: SSOToken):
+    def isValid(actualToken):
+         if actualToken != correctToken:
+            raise ValueError("Wrong token received")
+    return isValid

@@ -59,5 +59,6 @@ The inspiration for this is taken from this article https://testdriven.io/blog/m
     - `pytest --fixtures` gives a list of fixtures, including one built up with setup fixtures that may have doc comments
     - `pytest --markers` gives a list of markers to help decorate functions with
     - `pip install pytest-html` and output html to show reports and output an html report `pytest --html=report.html`
+    - **Mocking** details can be here within [https://docs.python.org/3/library/unittest.mock.html#module-unittest.mock](https://docs.python.org/3/library/unittest.mock.html#module-unittest.mock)
     - 
 
