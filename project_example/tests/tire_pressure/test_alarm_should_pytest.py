@@ -22,7 +22,7 @@ def test_high_pressure_activates_alarm():
 
     assert alarm.isAlarmOn == True
 
-# REMARKS: Patch makes more sense of the constructor does not allow for sensor to be assigned
+# REMARKS: Patch makes more sense if the constructor does not allow for sensor to be assigned
 def test_high_pressure_activates_alarm_using_monkeypatch():
     # REMARKS refers to the modules in the patch param
     with patch("tire_pressure.alarm.Sensor") as sensorType:
