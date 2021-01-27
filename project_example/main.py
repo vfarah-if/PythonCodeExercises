@@ -1,4 +1,4 @@
-from sum.another_sum import another_sum
+from arithmatic.another_sum import another_sum
 from requests import get
 
 def getNumbers():
