@@ -22,7 +22,18 @@ def test_high_pressure_activates_alarm():
 
     assert alarm.isAlarmOn == True
 
+
+def test_call_sensor_sample_pressure():
+    sensorSpy = stubSensor(100)
+    alarm = Alarm(sensor=sensorSpy)
+
+    alarm.check()
+
+    sensorSpy.samplePressure.assert_called_once()
+
 # REMARKS: Patch makes more sense if the constructor does not allow for sensor to be assigned
+
+
 def test_high_pressure_activates_alarm_using_monkeypatch():
     # REMARKS refers to the modules in the patch param
     with patch("tire_pressure.alarm.Sensor") as sensorType:
