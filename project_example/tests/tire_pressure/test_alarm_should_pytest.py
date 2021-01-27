@@ -8,7 +8,7 @@ def test_alarm_is_off_by_default(alarm: Alarm):
 
 
 def test_low_pressure_activates_alarm():
-    alarm = Alarm(sensor=stubSensor(10))
+    alarm = Alarm(sensor=mockSensor(10))
 
     alarm.check()
 
@@ -16,7 +16,7 @@ def test_low_pressure_activates_alarm():
 
 
 def test_high_pressure_activates_alarm():
-    alarm = Alarm(sensor=stubSensor(100))
+    alarm = Alarm(sensor=mockSensor(100))
 
     alarm.check()
 
@@ -24,7 +24,7 @@ def test_high_pressure_activates_alarm():
 
 
 def test_call_sensor_sample_pressure():
-    sensorSpy = stubSensor(100)
+    sensorSpy = mockSensor(100)
     alarm = Alarm(sensor=sensorSpy)
 
     alarm.check()
@@ -61,13 +61,13 @@ def test_low_pressure_activates_alarm_using_monkeypatch_decorator(sensorType):
 
 
 def test_valid_pressure_does_notactivates_alarm():
-    alarm = Alarm(sensor=stubSensor(18))
+    alarm = Alarm(sensor=mockSensor(18))
     alarm.check()
 
     assert alarm.isAlarmOn == False
 
 
-def stubSensor(pressure: int):
+def mockSensor(pressure: int):
     result = Mock(Sensor)
     result.samplePressure.return_value = pressure
     return result
