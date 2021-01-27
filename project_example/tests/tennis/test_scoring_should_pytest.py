@@ -1,5 +1,5 @@
 
-from tennis.scoring import tennisScore
+from tennis.scoring import tennis_score
 import pytest
 
 
@@ -12,5 +12,5 @@ import pytest
                           (0, 1, "Love-Fifteen"),
                           ])
 def test_scoring(playerOneScore: int, playerTwoScore: int, expectedResult: str):
-    actualScore = tennisScore(playerOneScore, playerTwoScore)
+    actualScore = tennis_score(playerOneScore, playerTwoScore)
     assert actualScore == expectedResult

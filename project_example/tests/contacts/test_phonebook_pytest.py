@@ -40,15 +40,15 @@ def test_raises_key_error_when_name_not_found(phonebook):
 
 def test_is_consistent_when_there_are_no_duplicates(phonebook):
     phonebook.add("Bob", 12345)
-    assert phonebook.isConsistent() == True
+    assert phonebook.is_consistent() == True
 
     phonebook.add("Sue", 23456)
-    assert phonebook.isConsistent() == True
+    assert phonebook.is_consistent() == True
 
 
 def test_is_not_consistent_when_there_are_duplicate_numbers(phonebook):
     phonebook.add("Bob", 12345)
-    assert phonebook.isConsistent() == True
+    assert phonebook.is_consistent() == True
 
     phonebook.add("Sue", 12345)
-    assert phonebook.isConsistent() == False
+    assert phonebook.is_consistent() == False

@@ -43,12 +43,12 @@ class PhoneBookTest(TestCase):
 
         self.setUpPhoneBookWith("Sue", "23456")
 
-        self.assertTrue(self.phonebook.isConsistent())
+        self.assertTrue(self.phonebook.is_consistent())
 
     def test_is_not_consistent_when_there_are_duplicate_values(self):
         self.setUpPhoneBookWith(name="Bob", phone_no="12345")
-        self.assertTrue(self.phonebook.isConsistent())
+        self.assertTrue(self.phonebook.is_consistent())
 
         self.setUpPhoneBookWith("Jane", "12345")
 
-        self.assertFalse(self.phonebook.isConsistent())
+        self.assertFalse(self.phonebook.is_consistent())

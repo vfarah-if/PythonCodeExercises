@@ -21,11 +21,11 @@ def test_sso_registry_used_to_validate_the_token():
     
     myService.handle(Request("Vincent"), token)
 
-    spyOnSSORegistry.isValid.assert_called_with(token)
+    spyOnSSORegistry.is_valid.assert_called_with(token)
 
 def test_invalid_sso_should_get_pleaase_sign_in_response():
     spyOnSSORegistry = Mock(SingleSignOnRegistry)
-    spyOnSSORegistry.isValid.return_value = False
+    spyOnSSORegistry.is_valid.return_value = False
     myService = MyService(spyOnSSORegistry)
     token = SSOToken()
     
@@ -36,16 +36,16 @@ def test_invalid_sso_should_get_pleaase_sign_in_response():
 def test_sso_receives_the_correct_token():
     mockSSORegistry = Mock(SingleSignOnRegistry)
     correctToken = SSOToken();
-    mockSSORegistry.isValid = Mock(side_effect=confirmToken(correctToken))
+    mockSSORegistry.is_valid = Mock(side_effect=confirmToken(correctToken))
     myService= MyService(mockSSORegistry)
 
     myService.handle(Request("Vincent"), correctToken)
 
-    mockSSORegistry.isValid.assert_called()
+    mockSSORegistry.is_valid.assert_called()
 
 
 def confirmToken(correctToken: SSOToken):
-    def isValid(actualToken):
+    def is_valid(actualToken):
          if actualToken != correctToken:
             raise ValueError("Wrong token received")
-    return isValid
+    return is_valid

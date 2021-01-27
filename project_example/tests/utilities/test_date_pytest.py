@@ -1,5 +1,5 @@
 from datetime import date
-from utilities.date import daysAgo
+from utilities.date import days_ago
 
 # @pytest.skip('actual.day failing for some odd reason')
 def test_date_generated_is_correct():
@@ -7,7 +7,7 @@ def test_date_generated_is_correct():
     today = date.today()
     expectedDay = today.day - dayCount
 
-    actual = daysAgo(days=dayCount)
+    actual = days_ago(days=dayCount)
 
     assert actual.day == expectedDay
     assert actual.month == today.month

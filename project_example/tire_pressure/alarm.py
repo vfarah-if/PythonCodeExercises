@@ -9,10 +9,10 @@ class Alarm:
         self._isAlarmOn = False
 
     @property
-    def isAlarmOn(self):
+    def is_alarm_on(self):
         return self._isAlarmOn
     
     def check(self):
-        pressure = self._sensor.samplePressure()
+        pressure = self._sensor.sample_pressure()
         if pressure < self._lowPressureThreshold or pressure > self._highPressureThreshold:
             self._isAlarmOn = True

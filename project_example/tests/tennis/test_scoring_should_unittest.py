@@ -1,5 +1,5 @@
 from _pytest.mark.structures import ParameterSet
-from tennis.scoring import tennisScore
+from tennis.scoring import tennis_score
 from unittest import TestCase
 
 
@@ -18,5 +18,5 @@ class TennisScoringShould(TestCase):
         for playerOnePoints, playerTwoPoints, expectedResult in testCases:
             with self.subTest(f"{playerOnePoints}{playerTwoPoints} -> {expectedResult}"):
                 self.assertEqual(
-                    tennisScore(playerOnePoints, playerTwoPoints),
+                    tennis_score(playerOnePoints, playerTwoPoints),
                     expectedResult)
