@@ -3,7 +3,7 @@ from tennis.scoring import tennis_score
 import pytest
 
 
-@pytest.mark.parametrize("playerOneScore, playerTwoScore, expectedResult",
+@pytest.mark.parametrize("player_one_score, player_two_score, expected_result",
                          [(0, 0, "Love-All"),
                           (1, 1, "Fifteen-All"),
                           (2, 2, "Thirty-All"),
@@ -11,6 +11,6 @@ import pytest
                           (1, 0, "Fifteen-Love"),
                           (0, 1, "Love-Fifteen"),
                           ])
-def test_scoring(playerOneScore: int, playerTwoScore: int, expectedResult: str):
-    actualScore = tennis_score(playerOneScore, playerTwoScore)
-    assert actualScore == expectedResult
+def test_scoring(player_one_score: int, player_two_score: int, expected_result: str):
+    actual_score = tennis_score(player_one_score, player_two_score)
+    assert actual_score == expected_result
