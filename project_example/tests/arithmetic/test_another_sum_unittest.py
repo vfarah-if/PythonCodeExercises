@@ -1,4 +1,4 @@
-from arithmatic.another_sum import another_sum
+from arithmetic.another_sum import another_sum
 from unittest.case import TestCase
 
 
