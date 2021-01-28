@@ -38,9 +38,9 @@ def test_call_sensor_sample_pressure():
 def test_high_pressure_activates_alarm_using_monkeypatch():
     # REMARKS refers to the modules in the patch param
     with patch("tire_pressure.alarm.Sensor") as sensorType:
-        mock_sensor = Mock(Sensor)
-        mock_sensor.sample_pressure.return_value = 22
-        sensorType.return_value = mock_sensor
+        mock_instance = Mock(Sensor)
+        mock_instance.sample_pressure.return_value = 22
+        sensorType.return_value = mock_instance
 
         alarm = Alarm()
         alarm.check()
