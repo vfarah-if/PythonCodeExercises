@@ -10,4 +10,7 @@ Get started by:
 - `python manage.py runserver` to run the project
 - The full course can be found at [django_getting_started](https://github.com/codesensei-courses/django_getting_started)
 - Create another folder `python manage.py startapp <folder or domain name>`
+- `python manage.py showmigrations  ` shows migrations not yet set and `python manage.py migrate` migrates the changes
+- `python manage.py dbshell` show **sqlite** db entries but it is easier through pycharm database console
+- 
 
