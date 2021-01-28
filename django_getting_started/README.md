@@ -9,4 +9,5 @@ Get started by:
   - `django-admin startproject  <ProjectName>` for creating a new project
 - `python manage.py runserver` to run the project
 - The full course can be found at [django_getting_started](https://github.com/codesensei-courses/django_getting_started)
-- 
+- Create another folder `python manage.py startapp <folder or domain name>`
+
