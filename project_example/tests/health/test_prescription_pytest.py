@@ -10,8 +10,8 @@ def test_days_taken_and_exclude_future_dates(prescription):
 
 def test_prescription_as_string(prescription):
     today = date.today()
-    expectedDate = today - timedelta(days=2)
-    
+    expected_date = today - timedelta(days=2)
+
     actual = prescription.to_string()
-    assert actual == F"Codeine should be dispensed on the '{expectedDate}' with only 4 days supply"
+    assert actual == F"Codeine should be dispensed on the '{expected_date}' with only 4 days supply"
 

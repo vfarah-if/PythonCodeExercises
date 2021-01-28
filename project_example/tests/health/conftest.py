@@ -5,7 +5,7 @@ from health.prescription import Prescription
 
 @fixture
 def prescription():
-    "Provides a default prescription"
+    """Provides a default prescription"""
     return Prescription(
         description="Codeine",
         dispenseDate=days_ago(days=2),

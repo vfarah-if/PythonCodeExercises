@@ -4,7 +4,7 @@ from health.prescription import Prescription
 from unittest.case import TestCase
 
 
-class PresciptionShould(TestCase):
+class PrescriptionShould(TestCase):
     def setUp(self) -> None:
         self.prescription = Prescription(
             description="Codeine",
@@ -18,6 +18,6 @@ class PresciptionShould(TestCase):
 
     def test_prescription_as_string(self):
         today = date.today()
-        expectedDate = today - timedelta(days=2)
+        expected_date = today - timedelta(days=2)
         self.assertEqual(self.prescription.to_string(
-        ), F"Codeine should be dispensed on the '{expectedDate}' with only 4 days supply")
+        ), F"Codeine should be dispensed on the '{expected_date}' with only 4 days supply")
