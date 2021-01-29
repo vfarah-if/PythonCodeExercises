@@ -17,7 +17,9 @@
     <ol>
         {% for meeting in meetings %}
             <li>
-                <a href="/meetings/{{meeting.id}}">
+                {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
+                {# <a href="/meetings/{{meeting.id}}"> #}
+                <a href="{% url 'detail' meeting.id %}">
                     {{ meeting.title }}
                 </a>
             </li>

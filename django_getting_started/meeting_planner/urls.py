@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome),
     path('about', about),
-    path('meetings/<int:meeting_id>', detail)
+    path('meetings/<int:meeting_id>', detail, name="detail")
 ]
