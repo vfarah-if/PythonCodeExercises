@@ -3,7 +3,8 @@ from django.shortcuts import render
 
 
 def welcome(request):
-    return render(request, 'website/welcome.html')
+    data = dict(message="Test to see the rendered using the template structure")
+    return render(request, 'website/welcome.html', data)
 
 
 def about(request):
