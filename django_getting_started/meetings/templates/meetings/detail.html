@@ -50,9 +50,23 @@
         margin-right: 0;
         font-weight: bold;
     }
+
+    a:link, a:visited {
+        color: (internal value);
+        text-decoration: underline;
+        cursor: auto;
+    }
+
+    a:link:active, a:visited:active {
+        color: (internal value);
+    }
 </style>
 <body>
 <h1>{{ meeting.title }}</h1>
+<div>
+    <a href="{% url "home" %}">Back Home</a>
+</div>
+
 <details>
     <summary>{{ meeting.title }} details</summary>
     <dl>
@@ -62,5 +76,6 @@
         <dt><strong>Room: </strong>{{ meeting.room }}</dt>
     </dl>
 </details>
+
 </body>
 </html>

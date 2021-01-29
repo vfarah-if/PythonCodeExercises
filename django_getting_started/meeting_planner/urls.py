@@ -21,7 +21,7 @@ from website.views import welcome, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', welcome),
-    path('about', about),
+    path('', welcome, name="home"),
+    path('aboutvincent', about, name="about"),
     path('meetings/<int:meeting_id>', detail, name="detail")
 ]
