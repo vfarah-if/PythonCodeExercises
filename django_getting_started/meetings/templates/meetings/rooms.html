@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Rooms</title>
+</head>
+<style>
+    dl {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    dt {
+        display: block;
+    }
+
+    dd {
+        display: block;
+        margin-left: 40px;
+    }
+</style>
+<body>
+<h2>All Rooms</h2>
+<div>
+    <a href="{% url "home" %}">Back Home</a>
+</div>
+<dl>
+    {% for room in rooms %}
+        <dt>{{ room.name }}</dt>
+        <dd>Floor {{ room.floor }}</dd>
+        <dd>Room {{ room.room }}</dd>
+    {% endfor %}
+</dl>
+</body>
+</html>
