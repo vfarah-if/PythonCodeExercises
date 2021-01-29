@@ -6,11 +6,22 @@
 </head>
 <body>
     <h1>Welcome to the Meeting Planner!</h1>
+    <a href="/about">About this ...</a>
     <p>
         This is the demo application to get familiar with <em>Django</em>: <strong>getting started</strong>
         and can be found in way more detail on <a href="https://www.pluralsight.com">Pluralsight</a>
     </p>
     <p>{{ message }}</p>
     <p>There are currently {{ meetings_count }} meetings in the database</p>
+    <h2>Meetings</h2>
+    <ol>
+        {% for meeting in meetings %}
+            <li>
+                <a href="/meetings/{{meeting.id}}">
+                    {{ meeting.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
 </body>
 </html>

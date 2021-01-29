@@ -7,7 +7,8 @@ from meetings.models import Meeting
 def welcome(request):
     data = dict(
         message="Test to see the rendered using the template structure",
-        meetings_count=Meeting.objects.count()
+        meetings_count=Meeting.objects.count(),
+        meetings=Meeting.objects.all()
     )
     return render(request, 'website/welcome.html', data)
 
