@@ -1,10 +1,9 @@
-from datetime import datetime
-
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def welcome(request):
-    return HttpResponse("Welcome to the meeting planner! " + str(datetime.utcnow()))
+    return render(request, 'website/welcome.html')
 
 
 def about(request):
