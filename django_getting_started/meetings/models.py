@@ -19,7 +19,7 @@ class Meeting(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.title} @ {self.start_time.strftime("%I:%M:%S %p")} for {self.duration} minutes {self.room_info}'
+        return f'{self.id}-{self.title} @ {self.start_time.strftime("%I:%M:%S %p")} for {self.duration} minutes {self.room_info}'
 
     @property
     def room_info(self):
