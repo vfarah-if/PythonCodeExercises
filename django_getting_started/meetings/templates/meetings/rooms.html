@@ -1,29 +1,26 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All Rooms</title>
-    <link rel="stylesheet" href="{% static 'website/style.css' %}">
-    <link rel="stylesheet" href="rooms.css">
-</head>
-<body>
-<h2>All Rooms</h2>
-<div>
-    <a href="{% url "home" %}">Back Home</a>
-</div>
-<dl>
-    {% for room in rooms %}
-        <dt>{{ room.name }}</dt>
-        <dd>Floor {{ room.floor }}</dd>
-        <dd>Room {{ room.room }}</dd>
-    {% endfor %}
-    {% if rooms|length == 0 %}
-        <div class="alert info">
-            <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-            No rooms found
-        </div>
-    {% endif %}
-</dl>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}All Rooms{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="rooms.css">{% endblock %}
+{% block content %}
+    <h2>All Rooms</h2>
+    <dl>
+        {% for room in rooms %}
+            <dt>{{ room.name }}</dt>
+            <dd>Floor {{ room.floor }}</dd>
+            <dd>Room {{ room.room }}</dd>
+        {% endfor %}
+        {% if rooms|length == 0 %}
+            <div class="alert info">
+                <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+                No rooms found
+            </div>
+        {% endif %}
+    </dl>
+{% endblock %}
+{% block footer %}
+    <div>
+        <a href="{% url "home" %}">Back Home</a>
+    </div>
+{% endblock %}

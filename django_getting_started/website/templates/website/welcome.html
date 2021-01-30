@@ -1,56 +1,58 @@
+{% extends "base.html" %}
+
+{# For the image reference #}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to DJANGO basics</title>
-    <link rel="stylesheet" href="{% static 'website/style.css' %}">
-</head>
-<body>
-<h1>Welcome to the Meeting Planner!</h1>
-{# <a href="/about">About this ...</a>#}
-<a href="{% url 'about' %}">About this</a>
-<p>
-    This is the demo application to get familiar with <em>Django</em>: <strong>getting started</strong>
-    and can be found in way more detail on <a href="https://www.pluralsight.com">Pluralsight</a>
-</p>
-<p>{{ message }}</p>
-<p>There are currently {{ meetings_count }} meetings in the database</p>
-<img class="calendar center" src="{% static 'website/calendar.png' %}" alt="Pencil a Calendar entry">
-<h2>Meetings</h2>
-{% if meetings|length >= 0 %}
-    <ol>
-        {% for meeting in meetings %}
-            <li>
-                {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
-                {# <a href="/meetings/{{meeting.id}}"> #}
-                <a href="{% url 'detail' meeting.id %}">
-                    {{ meeting.title }}
-                </a>
-            </li>
-        {% endfor %}
-    </ol>
-{% else %}
-    <p>No meetings yet</p>
-{% endif %}
-<h2>Archived Meetings</h2>
-{% if archived_meetings|length >= 0 %}
-    <ol>
-        {% for meeting in archived_meetings %}
-            <li>
-                {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
-                {# <a href="/meetings/{{meeting.id}}"> #}
-                <a href="{% url 'detail' meeting.id %}">
-                    {{ meeting.title }}
-                </a>
-            </li>
-        {% endfor %}
-    </ol>
-{% else %}
-    <p>No archived meetings yet</p>
-{% endif %}
-<h2>Rooms</h2>
-<p>There are currently {{ rooms_count }} <strong>rooms</strong> in the database. <a href="{% url 'rooms' %}">View all
-    rooms</a></p>
-</body>
-</html>
+
+{% block title %}Meeting Planner{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Meeting Planner!</h1>
+    <p>
+        This is the demo application to get familiar with <em>Django</em>: <strong>getting started</strong>
+        and can be found in way more detail on <a href="https://www.pluralsight.com">Pluralsight</a>
+    </p>
+    <p>{{ message }}</p>
+    <p>There are currently {{ meetings_count }} meetings in the database</p>
+    <img class="calendar center" src="{% static 'website/calendar.png' %}" alt="Pencil a Calendar entry">
+    <h2>Meetings</h2>
+    {% if meetings|length >= 0 %}
+        <ol>
+            {% for meeting in meetings %}
+                <li>
+                    {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
+                    {# <a href="/meetings/{{meeting.id}}"> #}
+                    <a href="{% url 'detail' meeting.id %}">
+                        {{ meeting.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No meetings yet</p>
+    {% endif %}
+    <h2>Archived Meetings</h2>
+    {% if archived_meetings|length >= 0 %}
+        <ol>
+            {% for meeting in archived_meetings %}
+                <li>
+                    {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
+                    {# <a href="/meetings/{{meeting.id}}"> #}
+                    <a href="{% url 'detail' meeting.id %}">
+                        {{ meeting.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No archived meetings yet</p>
+    {% endif %}
+    <h2>Rooms</h2>
+    <p>There are currently {{ rooms_count }} <strong>rooms</strong> in the database. <a href="{% url 'rooms' %}">View
+        all
+        rooms</a></p>
+{% endblock %}
+
+{% block footer %}
+    {# <a href="/about">About this ...</a>#}
+    <a href="{% url 'about' %}">About this</a>
+{% endblock %}

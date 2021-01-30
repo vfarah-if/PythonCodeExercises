@@ -1,27 +1,27 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Meeting: {{ meeting.title }}</title>
-    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+{% extends "base.html" %}
+
+{% block title %}
+    Meeting: {{ meeting.title }}
+{% endblock %}
+
+{% block head %}
     <link rel="stylesheet" href="detail.css">
-</head>
-<body>
-<h1>{{ meeting.title }}</h1>
-<div>
-    <a href="{% url "home" %}">Back Home</a>
-</div>
+{% endblock %}
 
-<details>
-    <summary>{{ meeting.title }} details</summary>
-    <dl>
-        <dt><strong>Date: </strong>{{ meeting.date }}</dt>
-        <dd><strong>Time: </strong>{{ meeting.start_time }}</dd>
-        <dd><strong>Duration: </strong>{{ meeting.duration }} minutes</dd>
-        <dt><strong>Room: </strong>{{ meeting.room }}</dt>
-    </dl>
-</details>
+{% block content %}
+    <details>
+        <summary>{{ meeting.title }} details</summary>
+        <dl>
+            <dt><strong>Date: </strong>{{ meeting.date }}</dt>
+            <dd><strong>Time: </strong>{{ meeting.start_time }}</dd>
+            <dd><strong>Duration: </strong>{{ meeting.duration }} minutes</dd>
+            <dt><strong>Room: </strong>{{ meeting.room }}</dt>
+        </dl>
+    </details>
+{% endblock %}
 
-</body>
-</html>
+{% block footer %}
+    <div>
+        <a href="{% url "home" %}">Back Home</a>
+    </div>
+{% endblock %}
