@@ -32,11 +32,11 @@ This is a course on developing with django using a [pluralsight course](https://
 
   ## Anatomy of a Django Project
 
-- Using the meeting project as an example the root project can be found [django_getting_started](PythonCodeExecises/django_getting_started)
+- Using the meeting project as an example the root project can be found [django_getting_started](django_getting_started)
 
-- The project settings can be found under [meeting_planner](django_getting_started/meeting_planner)
+- The project settings can be found under [meeting_planner](meeting_planner)
 
-- [settings.py](django_getting_started/meeting_planner/settings.py) is used for configuring apps, middleware, templates and database settings
+- [settings.py](meeting_planner/settings.py) is used for configuring apps, middleware, templates and database settings
 
 - [urls.py](django_getting_started/meeting_planner/urls.py) is used for configuring the routes to the various application folders or application domains
 
