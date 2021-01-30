@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}All Rooms{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="rooms.css">{% endblock %}
+    <link rel="stylesheet" href="{% static 'meetings/rooms.css' %}">
+{% endblock %}
 {% block content %}
     <h2>All Rooms</h2>
     <dl>
         {% for room in rooms %}
-            <dt>{{ room.name }}</dt>
+            <dt><strong>{{ room.name }}</strong></dt>
             <dd>Floor {{ room.floor }}</dd>
             <dd>Room {{ room.room }}</dd>
         {% endfor %}

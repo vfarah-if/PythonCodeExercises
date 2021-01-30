@@ -14,7 +14,12 @@
     <p>{{ message }}</p>
     <p>There are currently {{ meetings_count }} meetings in the database</p>
     <img class="calendar center" src="{% static 'website/calendar.png' %}" alt="Pencil a Calendar entry">
-    <h2>Meetings</h2>
+    <h2>
+        Meetings
+        <a class="create-meeting" href="{% url 'create' %}">
+            <img src="{% static 'website/add-meeting-40.png' %}" alt="Create new meeting">
+        </a>
+    </h2>
     {% if meetings|length >= 0 %}
         <ol>
             {% for meeting in meetings %}

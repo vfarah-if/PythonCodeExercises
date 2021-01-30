@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}
     Meeting: {{ meeting.title }}
 {% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="{% static 'meetings/detail.css' %}">
 {% endblock %}
 
 {% block content %}

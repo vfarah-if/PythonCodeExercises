@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.forms import modelform_factory
 
 from meetings.models import Meeting, Room
 
@@ -14,3 +15,19 @@ def rooms(request):
     all_rooms = Room.objects.all()
     data = dict(rooms=all_rooms)
     return render(request, "meetings/rooms.html", data)
+
+
+MeetingForm = modelform_factory(Meeting, exclude=[])
+
+
+def create(request):
+    if request.method == "POST":
+        form = MeetingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = MeetingForm()
+
+    data = dict(form=form)
+    return render(request, "meetings/create.html", data)
