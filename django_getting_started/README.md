@@ -131,5 +131,64 @@ This is a course on developing with django using a [pluralsight course](https://
 
   - **tests**: test with framework like **pytest** is a good fit for tests
 
+  ## Base templating
+
+- Django permits defining a base template or templates to share common ideas e.g.
+
+  ```html
+  {% load static %}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>{% block title %}{% endblock %}</title>
+      <link rel="stylesheet" href="{% static 'website/style.css' %}">
+      {% block head %}
+      {% endblock %}
+  </head>
+  <body>
+      {% block content %}
+      {% endblock %}
+  </body>
+  <footer>
+      {% block footer %}
+      {% endblock %}
+  </footer>
+  </html>
+  ```
+
+- Referencing the content can be done through
+
+  ```html
+  <!-- details.html-->
+  {% extends "base.html" %}
   
+  {% block title %}
+      Meeting: {{ meeting.title }}
+  {% endblock %}
+  
+  {% block head %}
+      <link rel="stylesheet" href="detail.css">
+  {% endblock %}
+  
+  {% block content %}
+      <details>
+          <summary>{{ meeting.title }} details</summary>
+          <dl>
+              <dt><strong>Date: </strong>{{ meeting.date }}</dt>
+              <dd><strong>Time: </strong>{{ meeting.start_time }}</dd>
+              <dd><strong>Duration: </strong>{{ meeting.duration }} minutes</dd>
+              <dt><strong>Room: </strong>{{ meeting.room }}</dt>
+          </dl>
+      </details>
+  {% endblock %}
+  
+  {% block footer %}
+      <div>
+          <a href="{% url "home" %}">Back Home</a>
+      </div>
+  {% endblock %}
+  ```
+
+- 
 
