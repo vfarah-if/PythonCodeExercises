@@ -3,64 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Meeting: {{ meeting.title }}</title>
+    <link rel="stylesheet" href="/static/website/style.css">
+    <link rel="stylesheet" href="detail.css">
 </head>
-<style>
-    {# Extract into a CSS file whenunderstaood what that is  #}
-    details > summary {
-        padding: 4px;
-        width: 200px;
-        background-color: #eeeeee;
-        border: none;
-        box-shadow: 1px 1px 2px #bbbbbb;
-        cursor: pointer;
-    }
-
-    details > p {
-        background-color: #eeeeee;
-        padding: 4px;
-        margin: 0;
-        box-shadow: 1px 1px 2px #bbbbbb;
-    }
-
-    dd {
-        display: block;
-        margin-left: 40px;
-    }
-
-    details {
-        display: block;
-    }
-
-    dl {
-        display: block;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    h1 {
-        background-color: gray;
-        text-align: center;
-        display: block;
-        font-size: 2em;
-        margin-top: 0.67em;
-        margin-bottom: 0.67em;
-        margin-left: 0;
-        margin-right: 0;
-        font-weight: bold;
-    }
-
-    a:link, a:visited {
-        color: (internal value);
-        text-decoration: underline;
-        cursor: auto;
-    }
-
-    a:link:active, a:visited:active {
-        color: (internal value);
-    }
-</style>
 <body>
 <h1>{{ meeting.title }}</h1>
 <div>
