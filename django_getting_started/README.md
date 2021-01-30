@@ -95,7 +95,7 @@ This is a course on developing with django using a [pluralsight course](https://
     admin.site.register(Room)	
     ```
 
-  - **templates**: create an html template with django templating language
+  - **templates**: create an html template with django templating language. The template folder must follow "templates/<domain>/<file.html>" and the reference to to the template should always be *domain*/<*file.html*>
 
     ```html
     <!-- rooms.html  -->
