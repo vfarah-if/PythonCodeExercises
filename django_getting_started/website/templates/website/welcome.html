@@ -26,6 +26,18 @@
             </li>
         {% endfor %}
     </ol>
+    <h2>Archived Meetings</h2>
+    <ol>
+        {% for meeting in archived_meetings %}
+            <li>
+                {# Anti pattern for urls but this is an intuitive way of doing urls but will be painful if routing changes #}
+                {# <a href="/meetings/{{meeting.id}}"> #}
+                <a href="{% url 'detail' meeting.id %}">
+                    {{ meeting.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
     <h2>Rooms</h2>
     <p>There are currently {{ rooms_count }} <strong>rooms</strong> in the database. <a href="{% url 'rooms' %}">View all rooms</a></p>
 </body>
