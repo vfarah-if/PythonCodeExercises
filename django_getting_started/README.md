@@ -32,7 +32,7 @@ This is a course on developing with django using a [pluralsight course](https://
 
   ## Anatomy of a Django Project
 
-- Using the meeting project as an example the root project can be found [django_getting_started](django_getting_started)
+- Using the meeting project as an example the root project can be found [django_getting_started](../django_getting_started)
 
 - The project settings can be found under [meeting_planner](meeting_planner)
 
