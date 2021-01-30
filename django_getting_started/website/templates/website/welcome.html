@@ -5,16 +5,17 @@
     <title>Welcome to DJANGO basics</title>
 </head>
 <body>
-    <h1>Welcome to the Meeting Planner!</h1>
-    {# <a href="/about">About this ...</a>#}
-    <a href="{% url 'about' %}">About this</a>
-    <p>
-        This is the demo application to get familiar with <em>Django</em>: <strong>getting started</strong>
-        and can be found in way more detail on <a href="https://www.pluralsight.com">Pluralsight</a>
-    </p>
-    <p>{{ message }}</p>
-    <p>There are currently {{ meetings_count }} meetings in the database</p>
-    <h2>Meetings</h2>
+<h1>Welcome to the Meeting Planner!</h1>
+{# <a href="/about">About this ...</a>#}
+<a href="{% url 'about' %}">About this</a>
+<p>
+    This is the demo application to get familiar with <em>Django</em>: <strong>getting started</strong>
+    and can be found in way more detail on <a href="https://www.pluralsight.com">Pluralsight</a>
+</p>
+<p>{{ message }}</p>
+<p>There are currently {{ meetings_count }} meetings in the database</p>
+<h2>Meetings</h2>
+{% if meetings|length >= 0 %}
     <ol>
         {% for meeting in meetings %}
             <li>
@@ -26,7 +27,11 @@
             </li>
         {% endfor %}
     </ol>
-    <h2>Archived Meetings</h2>
+{% else %}
+    <p>No meetings yet</p>
+{% endif %}
+<h2>Archived Meetings</h2>
+{% if archived_meetings|length >= 0 %}
     <ol>
         {% for meeting in archived_meetings %}
             <li>
@@ -38,7 +43,11 @@
             </li>
         {% endfor %}
     </ol>
-    <h2>Rooms</h2>
-    <p>There are currently {{ rooms_count }} <strong>rooms</strong> in the database. <a href="{% url 'rooms' %}">View all rooms</a></p>
+{% else %}
+    <p>No archived meetings yet</p>
+{% endif %}
+<h2>Rooms</h2>
+<p>There are currently {{ rooms_count }} <strong>rooms</strong> in the database. <a href="{% url 'rooms' %}">View all
+    rooms</a></p>
 </body>
 </html>
