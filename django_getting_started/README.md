@@ -108,10 +108,7 @@ This is a course on developing with django using a [pluralsight course](https://
     <style>
         dl {
             display: block;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            margin-left: 0;
-            margin-right: 0;
+            margin: 1em 0;
         }
     </style>
     <body>
@@ -130,7 +127,9 @@ This is a course on developing with django using a [pluralsight course](https://
     </html>
     ```
 
-    
+  - **apps**: Allow for configuration of the logical app or domain representation
+
+  - **tests**: test with framework like **pytest** is a good fit for tests
 
   
 
