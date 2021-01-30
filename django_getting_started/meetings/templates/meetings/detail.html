@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Meeting: {{ meeting.title }}</title>
-    <link rel="stylesheet" href="/static/website/style.css">
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
     <link rel="stylesheet" href="detail.css">
 </head>
 <body>

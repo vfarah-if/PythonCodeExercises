@@ -1,5 +1,7 @@
 body {
     font-family: Verdana;
     color: chocolate;
-    background-color: antiquewhite;
+    background-color: ghostwhite;
+    display: block;
+    margin: 8px;
 }
