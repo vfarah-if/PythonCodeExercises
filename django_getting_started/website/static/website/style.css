@@ -5,3 +5,13 @@ body {
     display: block;
     margin: 8px;
 }
+
+.calendar {
+   width: 40%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

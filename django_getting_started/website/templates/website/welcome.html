@@ -16,6 +16,7 @@
 </p>
 <p>{{ message }}</p>
 <p>There are currently {{ meetings_count }} meetings in the database</p>
+<img class="calendar center" src="{% static 'website/calendar.png' %}" alt="Pencil a Calendar entry">
 <h2>Meetings</h2>
 {% if meetings|length >= 0 %}
     <ol>
