@@ -1,6 +1,10 @@
 # Introduction
 
-This is a course on developing with django using a [pluralsight course](https://app.pluralsight.com/course-player?clipId=08e4d747-4a0e-4216-b614-9a3160f38690) . The documentation for Django can be found @ https://docs.djangoproject.com/en/3.1/
+The basics basics of this was enspired by several courses, where the outcome and topics got condensed into this project. The documentation for Django can be found @ https://docs.djangoproject.com/en/3.1/
+
+## Environment
+
+Assuming you are familiar with Python basics, you have the source checked out and you understand the basics, Start this project using an IDE or using the command line run `python manage.py runserver` and that will output the applicationto http://localhost:8000
 
 ## Get started
 
@@ -210,5 +214,50 @@ This is a course on developing with django using a [pluralsight course](https://
   {% endblock %}
   ```
 
+  ## Deployment
+
+  **Heroku** is a good PAAS offering for deployin a django application for quick and cheap
+
+- Create a **Heroku account**
+
+- **Download CLI** at https://devcenter.heroku.com/ or install on a Mac `curl https://cli-assets.heroku.com/install.sh | sh` installed to */usr/local/bin/heroku* and login by typing `heroku login`
+
+- Here is some more info on [getting started](https://devcenter.heroku.com/articles/getting-started-with-python) with python
+
+- Create a **Procfile** in the root of your project
+
+  ```python
+  # Procfile
+  web: gunicorn meeting_planner.wsgi
+  ```
+
+- `pip install gunicorn`
+
+- `pip install django-heroku`
+
+- `pip freeze > requirements.txt`
+
+- At the bottom of the **settings.py** file add `django_heroku.settings(locals())` and import django_heroku
+
+- Create a deployment by `heroku create django-meeting-planner-app` which installs to https://git.heroku.com/django-meeting-planner-app.git
+
+- Navigate to https://dashboard.heroku.com/apps to see deployed app to https://dashboard.heroku.com/apps/django-meeting-planner-app
+
+  ## Testing
+
+  TODO
+
+  ## References
+
+- **All documentation** can be found at https://docs.djangoproject.com/en/3.1/
+
+- **Template** documentation can be found at https://docs.djangoproject.com/en/3.1/ref/templates/language/#templates
+
 - 
+
+  
+
+  # Summary
+
+  Finally when everything is generated, run `pip freeze > requirements.txt` to generate all the dependencies used in the project so other inheriting the project can generate the correct virtual environment
 
