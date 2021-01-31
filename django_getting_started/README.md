@@ -127,6 +127,26 @@ This is a course on developing with django using a [pluralsight course](https://
     </html>
     ```
 
+  - **Forms**: Allows for *metadata* exposure and extended *validation* to occur through the generated form logic. The meta defines how django can output html components with configured editor and the clean_date allows for a custom validator to be defined
+
+    ```python
+    class MeetingForm(ModelForm):
+        class Meta:
+            model = Meeting
+            fields = '__all__'
+            widgets = {
+                'date': DateInput(attrs={"type": "date"}),
+                'start_time': TimeInput(attrs={"type": "time"}),
+                'duration': TextInput(attrs={"type": "number", "min": "15", "max": "1440"}),
+            }
+    
+        def clean_date(self):
+            date = self.cleaned_data.get("date")
+            if date < date.today():
+                raise ValidationError("Meetings cannot be in the past")
+            return date
+    ```
+
   - **apps**: Allow for configuration of the logical app or domain representation
 
   - **tests**: test with framework like **pytest** is a good fit for tests

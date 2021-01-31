@@ -13,10 +13,32 @@
 }
 
 .button:hover span {
-  padding-right: 25px;
+    padding-right: 25px;
 }
 
 .button:hover {
     background-color: white;
     color: black;
+}
+
+fieldset {
+    background-color: white;
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 0.35em 0.75em 0.625em;
+    border: 2px groove (internal value);
+}
+
+legend {
+    background-color: gray;
+    color: white;
+    padding: 5px 10px;
+}
+
+fieldset label {
+    text-align: right;
+    float: left;
+    width: 10em;
+    margin-right: 1em;
 }

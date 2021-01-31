@@ -11,11 +11,14 @@
 {% block content %}
     <h1>Plan a new meeting</h1>
     <form method="post">
-        <table>
-            {{ form }}
-        </table>
-        {% csrf_token %}
-        <button class="button" type="submit">Create</button>
+        <fieldset>
+            <legend>Create meeting details</legend>
+            <table>
+                {{ form }}
+            </table>
+            {% csrf_token %}
+            <button class="button" type="submit">Create</button>
+        </fieldset>
     </form>
 {% endblock %}
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.forms import modelform_factory
-
+# from django.forms import modelform_factory
+from meetings.forms import MeetingForm
 from meetings.models import Meeting, Room
 
 
@@ -16,8 +16,8 @@ def rooms(request):
     data = dict(rooms=all_rooms)
     return render(request, "meetings/rooms.html", data)
 
-
-MeetingForm = modelform_factory(Meeting, exclude=[])
+# REMARKS: This is the original way with
+# MeetingForm = modelform_factory(Meeting, exclude=[])
 
 
 def create(request):
