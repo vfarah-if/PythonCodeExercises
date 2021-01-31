@@ -15,7 +15,7 @@ class Meeting(models.Model):
     title = models.CharField(max_length=200)
     date = models.DateField()
     start_time = models.TimeField(default=time(9))
-    duration = models.IntegerField(default=15)
+    duration = models.IntegerField(default=15, verbose_name="Duration (minutes)")
     room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
