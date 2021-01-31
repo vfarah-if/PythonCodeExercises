@@ -243,6 +243,10 @@ Assuming you are familiar with Python basics, you have the source checked out an
 
 - Navigate to https://dashboard.heroku.com/apps to see deployed app to https://dashboard.heroku.com/apps/django-meeting-planner-app
 
+- check `https://git.heroku.com/django-meeting-planner-app.git`
+
+- 
+
   ## Testing
 
   TODO
