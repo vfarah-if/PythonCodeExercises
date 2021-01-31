@@ -239,13 +239,15 @@ Assuming you are familiar with Python basics, you have the source checked out an
 
 - At the bottom of the **settings.py** file add `django_heroku.settings(locals())` and import django_heroku
 
-- Create a deployment by `heroku create django-meeting-planner-app` which installs to https://git.heroku.com/django-meeting-planner-app.git
+- Create a deployment by `heroku create django-meeting-planner-app --buildpack heroku/python` which installs to https://git.heroku.com/django-meeting-planner-app.git
 
 - Navigate to https://dashboard.heroku.com/apps to see deployed app to https://dashboard.heroku.com/apps/django-meeting-planner-app
 
 - check `https://git.heroku.com/django-meeting-planner-app.git`
 
-- 
+- check `git remotes -v` to make sure heroku is setup 
+
+- **NOTE**: Unable to deploy as I did not have this project setup in the root as it is expected - move this to the root and this should start working as expected
 
   ## Testing
 
