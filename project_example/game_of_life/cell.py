@@ -26,5 +26,9 @@ class Cell:
         if is_underpopulated() or is_overpopulated():
             self.is_alive = False
 
+    def add_neighbour(self, neighbour):
+        """Append neighbour"""
+        self.neighbours.append(neighbour)
+
     def __str__(self):
         return 'X' if self.is_alive else ' '

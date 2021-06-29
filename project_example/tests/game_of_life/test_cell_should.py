@@ -11,9 +11,9 @@ class TestCellShould:
 
     def test_come_to_life_when_three_live_neighbours_cause_reproduction(self):
         cell = Cell()
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
 
         cell.re_generate()
 
@@ -21,9 +21,9 @@ class TestCellShould:
 
     def test_killing_live_cell_when_fewer_than_two_live_neighbours_case_underpopulation(self):
         cell = Cell(True)
-        cell.neighbours.append(Cell(False))
-        cell.neighbours.append(Cell(False))
-        cell.neighbours.append(Cell(False))
+        cell.add_neighbour(Cell(False))
+        cell.add_neighbour(Cell(False))
+        cell.add_neighbour(Cell(False))
         assert cell.is_alive is True
 
         cell.re_generate()
@@ -32,9 +32,9 @@ class TestCellShould:
 
     def test_live_cell_with_two_live_neighbours_stays_alive_for_next_generation(self):
         cell = Cell(True)
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(False))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(False))
         assert cell.is_alive is True
 
         cell.re_generate()
@@ -43,10 +43,10 @@ class TestCellShould:
 
     def test_more_than_three_live_neighbours_kills_live_cell_by_virtue_of_over_population(self):
         cell = Cell(True)
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
-        cell.neighbours.append(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
+        cell.add_neighbour(Cell(True))
 
         cell.re_generate()
 
