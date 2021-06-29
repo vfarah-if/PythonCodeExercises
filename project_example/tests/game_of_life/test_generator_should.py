@@ -1,7 +1,7 @@
 from _pytest.python_api import raises
+from os import linesep
 
 from game_of_life.generator import Generator
-from os import linesep
 
 
 class TestGeneratorShould:

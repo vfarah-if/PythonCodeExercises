@@ -1,3 +1,5 @@
+from os import linesep
+
 from game_of_life.cell import Cell
 
 
@@ -105,7 +107,7 @@ class Generator:
         result = ' | '
         for y in range(self.size):
             if y != 0:
-                result += '\n | '
+                result += f'{linesep} | '
             for x in range(self.size):
                 item = str(self.board[x][y])
                 result += f'{item} | '
