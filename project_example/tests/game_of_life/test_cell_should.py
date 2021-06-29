@@ -20,3 +20,15 @@ class TestCellShould:
         cell.re_generate()
 
         cell.is_alive is True
+
+    def test_killing_live_cell_when_fewer_than_two_live_neighbours_case_underpopulation(self):
+        cell = Cell(0, 1, True)
+        cell.neighbours.append(Cell(0, 0, False))
+        cell.neighbours.append(Cell(0, 2, False))
+        cell.neighbours.append(Cell(1, 1, False))
+        assert cell.is_alive is True
+
+        cell.re_generate()
+
+        assert not cell.is_alive
+
