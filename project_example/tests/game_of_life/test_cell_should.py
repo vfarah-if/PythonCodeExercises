@@ -53,3 +53,11 @@ class TestCellShould:
         cell.re_generate()
 
         assert not cell.is_alive
+
+    def test_should_visualise_cell_by_status(self):
+        cell = Cell(0, 1, True)
+
+        assert str(cell) == '[0,1]X'
+
+        cell.is_alive = False
+        assert str(cell) == '[0,1] '

@@ -27,3 +27,7 @@ class Cell:
             self.is_alive = True
         if is_underpopulated() or is_overpopulated():
             self.is_alive = False
+
+    def __str__(self):
+        status = 'X' if self.is_alive else ' '
+        return f'[{self.x},{self.y}]{status}'
