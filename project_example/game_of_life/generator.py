@@ -33,6 +33,30 @@ class Generator:
             self.board.append(col)
 
     def _initialise_neighbours(self):
+        def has_top_left_diagonal_cell():
+            return above_y >= 0 and left_of_x > 0
+
+        def has_top_middle_cell():
+            return above_y >= 0
+
+        def has_top_right_diagonal_cell():
+            return above_y >= 0 and right_of_x < self.size
+
+        def has_right_cell():
+            return right_of_x < self.size
+
+        def has_bottom_right_diagonal_cell():
+            return below_y < self.size and right_of_x < self.size
+
+        def has_bottom_middle_cell():
+            return below_y < self.size
+
+        def has_bottom_left_diagonal_cell():
+            return below_y < self.size and left_of_x >= 0
+
+        def has_left_cell():
+            return left_of_x >= 0
+
         for y in range(self.size):
             for x in range(self.size):
                 above_y = y - 1
@@ -41,36 +65,28 @@ class Generator:
                 below_y = y + 1
                 current_cell = self.board[x][y]
                 # rotate around the current cell linearly
-                # top left diagonal
-                if above_y >= 0 and left_of_x > 0:
+                if has_top_left_diagonal_cell():
                     neighbour = self.board[left_of_x][above_y]
                     current_cell.add_neighbour(neighbour)
-                # top middle
-                if above_y >= 0:
+                if has_top_middle_cell():
                     neighbour = self.board[x][above_y]
                     current_cell.add_neighbour(neighbour)
-                # top right diagonal
-                if above_y >= 0 and right_of_x < self.size:
+                if has_top_right_diagonal_cell():
                     neighbour = self.board[right_of_x][above_y]
                     current_cell.add_neighbour(neighbour)
-                # right
-                if right_of_x < self.size:
+                if has_right_cell():
                     neighbour = self.board[right_of_x][y]
                     current_cell.add_neighbour(neighbour)
-                # bottom right diagonal
-                if below_y < self.size and right_of_x < self.size:
+                if has_bottom_right_diagonal_cell():
                     neighbour = self.board[right_of_x][below_y]
                     current_cell.add_neighbour(neighbour)
-                # bottom middle
-                if below_y < self.size:
+                if has_bottom_middle_cell():
                     neighbour = self.board[x][below_y]
                     current_cell.add_neighbour(neighbour)
-                # bottom left diagonal
-                if below_y < self.size and left_of_x >= 0:
+                if has_bottom_left_diagonal_cell():
                     neighbour = self.board[left_of_x][below_y]
                     current_cell.add_neighbour(neighbour)
-                # left
-                if left_of_x >= 0:
+                if has_left_cell():
                     neighbour = self.board[left_of_x][y]
                     current_cell.add_neighbour(neighbour)
 
