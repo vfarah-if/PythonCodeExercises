@@ -42,3 +42,14 @@ class TestCellShould:
         cell.re_generate()
 
         assert cell.is_alive
+
+    def test_more_than_three_live_neighbours_kills_live_cell_by_virtue_of_over_population(self):
+        cell = Cell(0, 1, True)
+        cell.neighbours.append(Cell(0, 0, True))
+        cell.neighbours.append(Cell(0, 2, True))
+        cell.neighbours.append(Cell(1, 0, True))
+        cell.neighbours.append(Cell(1, 1, True))
+
+        cell.re_generate()
+
+        assert not cell.is_alive

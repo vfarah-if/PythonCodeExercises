@@ -13,5 +13,5 @@ class Cell:
         alive_neighbours = [neighbour for neighbour in self.neighbours if neighbour.is_alive]
         if (self.is_alive and len(alive_neighbours) >= 2) or (len(alive_neighbours) == 3):
             self.is_alive = True
-        if len(alive_neighbours) < 2:
+        if (len(alive_neighbours) < 2) or (len(alive_neighbours) > 3):
             self.is_alive = False
