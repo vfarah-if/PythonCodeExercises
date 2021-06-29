@@ -32,3 +32,13 @@ class TestCellShould:
 
         assert not cell.is_alive
 
+    def test_live_cell_with_two_live_neighbours_stays_alive_for_next_generation(self):
+        cell = Cell(0, 1, True)
+        cell.neighbours.append(Cell(0, 0, True))
+        cell.neighbours.append(Cell(0, 2, True))
+        cell.neighbours.append(Cell(1, 1, False))
+        assert cell.is_alive is True
+
+        cell.re_generate()
+
+        assert cell.is_alive
