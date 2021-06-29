@@ -27,6 +27,13 @@ class Generator:
                 cell = self.board[x][y]
                 cell.re_generate()
 
+    def __str__(self):
+        """
+        Overrides default string output to represent a simplified visual of what is generated
+        @return: Generated visual showing a grid with cells denoting the state
+        """
+        return self._picture_board()
+
     def _initialise_board(self):
         for y in range(self.size):
             col = list()
@@ -34,6 +41,7 @@ class Generator:
                 col.append(Cell())
             self.board.append(col)
 
+    # TODO: Refactor this bad method to reduce amount of lines
     def _initialise_neighbours(self):
         def has_top_left_diagonal_cell():
             return above_y >= 0 and left_of_x > 0
@@ -99,9 +107,6 @@ class Generator:
             cell = self.board[x][y]
             if cell is not None:
                 cell.is_alive = True
-
-    def __str__(self):
-        return self._picture_board()
 
     def _picture_board(self):
         result = ' | '
