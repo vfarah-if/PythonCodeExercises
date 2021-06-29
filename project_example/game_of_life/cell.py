@@ -3,9 +3,7 @@ class Cell:
     Represent single unit of life
     """
 
-    def __init__(self, x: int, y: int, is_alive=False):
-        self.x = x
-        self.y = y
+    def __init__(self, is_alive=False):
         self.is_alive = is_alive
         self.neighbours = list()
 
@@ -29,5 +27,4 @@ class Cell:
             self.is_alive = False
 
     def __str__(self):
-        status = 'X' if self.is_alive else ' '
-        return f'[{self.x},{self.y}]{status}'
+        return 'X' if self.is_alive else ' '
