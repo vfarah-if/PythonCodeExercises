@@ -1,13 +1,19 @@
+from game_of_life.cell_state import CellState
+
+
 class Cell:
     """
     Represent single unit of life
     """
 
-    def __init__(self, is_alive=False):
-        self.is_alive = is_alive
+    def __init__(self, x: int, y: int, current_state=CellState.Dead):
+        self.current_state = current_state
+        self.next_state = current_state
         self.neighbours = list()
+        self.x = x
+        self.y = y
 
-    def re_generate(self):
+    def get_next_state(self) -> CellState:
         def is_overpopulated():
             return len(alive_neighbours) > 3
 
@@ -15,20 +21,25 @@ class Cell:
             return len(alive_neighbours) < 2
 
         def is_thriving():
-            return self.is_alive and len(alive_neighbours) >= 2
+            return self.current_state is CellState.Alive and len(alive_neighbours) == 2
 
         def is_fertile():
-            return not self.is_alive and len(alive_neighbours) == 3
+            return self.current_state is CellState.Dead and len(alive_neighbours) == 3
 
-        alive_neighbours = [neighbour for neighbour in self.neighbours if neighbour.is_alive]
+        self.next_state = self.current_state
+        alive_neighbours = [neighbour for neighbour in self.neighbours if neighbour.current_state is CellState.Alive]
         if is_thriving() or is_fertile():
-            self.is_alive = True
+            self.next_state = CellState.Alive
         if is_underpopulated() or is_overpopulated():
-            self.is_alive = False
+            self.next_state = CellState.Dead
+        return self.next_state
+
+    def transfer_state(self):
+        self.current_state = self.next_state
 
     def add_neighbour(self, neighbour):
         """Append neighbour"""
         self.neighbours.append(neighbour)
 
     def __str__(self):
-        return 'X' if self.is_alive else ' '
+        return 'X' if self.current_state is CellState.Alive else ' '

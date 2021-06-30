@@ -1,61 +1,47 @@
 from game_of_life.cell import Cell
+from game_of_life.cell_state import CellState
 
 
 class TestCellShould:
 
-    def test_initialise_by_default_as_a_dead(self):
-        cell = Cell()
+    def test_initialise_by_default_as_a_dead(self, dead_cell):
+        cell = Cell(0, 0)
 
         assert cell is not None
-        assert not cell.is_alive
+        assert cell.current_state is CellState.Dead
 
-    def test_come_to_life_when_three_live_neighbours_cause_reproduction(self):
-        cell = Cell()
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
+    def test_come_to_life_when_three_live_neighbours_cause_reproduction(self, dead_cell):
+        dead_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        dead_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        dead_cell.add_neighbour(Cell(0, 0, CellState.Alive))
 
-        cell.re_generate()
+        assert dead_cell.get_next_state() is CellState.Alive
 
-        cell.is_alive is True
+    def test_killing_live_cell_when_fewer_than_two_live_neighbours_case_underpopulation(self, living_cell):
+        living_cell.add_neighbour(Cell(0, 0, CellState.Dead))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Dead))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Dead))
 
-    def test_killing_live_cell_when_fewer_than_two_live_neighbours_case_underpopulation(self):
-        cell = Cell(True)
-        cell.add_neighbour(Cell(False))
-        cell.add_neighbour(Cell(False))
-        cell.add_neighbour(Cell(False))
-        assert cell.is_alive is True
+        assert living_cell.get_next_state() is CellState.Dead
 
-        cell.re_generate()
+    def test_live_cell_with_two_live_neighbours_stays_alive_for_next_generation(self, living_cell):
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Dead))
 
-        assert not cell.is_alive
+        assert living_cell.get_next_state() is CellState.Alive
 
-    def test_live_cell_with_two_live_neighbours_stays_alive_for_next_generation(self):
-        cell = Cell(True)
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(False))
-        assert cell.is_alive is True
+    def test_more_than_three_live_neighbours_kills_live_cell_by_virtue_of_over_population(self, living_cell):
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
+        living_cell.add_neighbour(Cell(0, 0, CellState.Alive))
 
-        cell.re_generate()
+        assert living_cell.get_next_state() is CellState.Dead
 
-        assert cell.is_alive
+    def test_should_visualise_cell_by_status(self, living_cell):
 
-    def test_more_than_three_live_neighbours_kills_live_cell_by_virtue_of_over_population(self):
-        cell = Cell(True)
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
-        cell.add_neighbour(Cell(True))
+        assert str(living_cell) == 'X'
 
-        cell.re_generate()
-
-        assert not cell.is_alive
-
-    def test_should_visualise_cell_by_status(self):
-        cell = Cell(True)
-
-        assert str(cell) == 'X'
-
-        cell.is_alive = False
-        assert str(cell) == ' '
+        living_cell.current_state = CellState.Dead
+        assert str(living_cell) == ' '
