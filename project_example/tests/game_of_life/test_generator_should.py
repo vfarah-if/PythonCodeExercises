@@ -34,8 +34,12 @@ class TestGeneratorShould:
         )
 
     def test_one_by_one_throws_an_value_error(self):
-        with raises(ValueError):
+        with raises(ValueError) as error:
             Generator(1, [])
+        assert str(error) == (
+            '<ExceptionInfo ValueError(\'"size" must must be no less than 2 for life to '
+            "exist', 1) tblen=2>"
+        )
 
     def test_one_neighbour_dies_by_solitude(self):
         generator = Generator(2, [
