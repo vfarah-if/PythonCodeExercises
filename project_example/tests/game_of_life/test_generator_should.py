@@ -118,17 +118,25 @@ class TestGeneratorShould:
         generator = Generator(3, [
             (0, 1), (1, 1), (2, 1),
         ])
-
-        assert str(generator) == (
+        flip = (
             f" |   |   |   | {linesep}"
             f" | X | X | X | {linesep}"
             f" |   |   |   | "
         )
-
-        generator.tick()
-
-        assert str(generator) == (
+        flop = (
             f" |   | X |   | {linesep}"
             f" |   | X |   | {linesep}"
             f" |   | X |   | "
         )
+
+        assert str(generator) == flip
+
+        generator.tick()
+
+        assert str(generator) == flop
+
+        generator.tick()
+
+        assert str(generator) == flip
+
+
