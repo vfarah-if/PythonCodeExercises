@@ -33,15 +33,14 @@ class TestGeneratorShould:
             f" |   |   |   |   |   | "
         )
 
-    def test_one_by_one_throws_an_attribute_error(self):
-        with raises(AttributeError):
+    def test_one_by_one_throws_an_value_error(self):
+        with raises(ValueError):
             Generator(1, [])
 
     def test_one_neighbour_dies_by_solitude(self):
         generator = Generator(2, [
             (0, 0), (1, 1),
         ])
-
         assert str(generator) == (
             f" | X |   | {linesep}"
             f" |   | X | "
@@ -58,7 +57,6 @@ class TestGeneratorShould:
         generator = Generator(3, [
             (0, 0), (1, 1), (1, 2)
         ])
-
         assert str(generator) == (
             f" | X |   |   | {linesep}"
             f" |   | X |   | {linesep}"
@@ -77,7 +75,6 @@ class TestGeneratorShould:
         generator = Generator(3, [
             (0, 0), (0, 1), (2, 2)
         ])
-
         assert str(generator) == (
             f" | X |   |   | {linesep}"
             f" | X |   |   | {linesep}"
@@ -97,7 +94,6 @@ class TestGeneratorShould:
             (1, 1), (2, 1),
             (1, 2), (2, 2),
         ])
-
         assert str(generator) == (
             f" |   |   |   |   | {linesep}"
             f" |   | X | X |   | {linesep}"
@@ -128,15 +124,12 @@ class TestGeneratorShould:
             f" |   | X |   | {linesep}"
             f" |   | X |   | "
         )
-
         assert str(generator) == flip
 
         generator.tick()
-
         assert str(generator) == flop
 
         generator.tick()
-
         assert str(generator) == flip
 
     def test_a_six_by_six_beacon_oscillator(self):
@@ -162,13 +155,10 @@ class TestGeneratorShould:
              f" |   |   |   | X | X |   | {linesep}"
              f" |   |   |   |   |   |   | "
         )
-
         assert str(generator) == flip
 
         generator.tick()
-
         assert str(generator) == flop
 
         generator.tick()
-
         assert str(generator) == flip

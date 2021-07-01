@@ -2,20 +2,23 @@ from os import linesep
 
 from game_of_life.cell import Cell
 from game_of_life.cell_state import CellState
+from game_of_life.position import Position
 
 
 class Generator:
-    """Game of life generator"""
+    """
+    Game of life generator
+    """
 
     def __init__(self, size: int, seed_data: list = list()):
         """
         Constructor
 
         @param size: Board Size or matrix setting for x and y and must be minimum 2
-        @param seed_data: List of tuples and teh tuple denoting x and y
+        @param seed_data: List of tuples denoting x, y positions
         """
         if size < 2:
-            raise AttributeError('"size" must must be no less than 2', size)
+            raise ValueError('"size" must must be no less than 2 for life to exist', size)
         self.size = size
         self.board = list()
         self._initialise_board()
@@ -27,24 +30,50 @@ class Generator:
         self._calculate_life_expectancy()
         self._regenerate()
 
-    def _regenerate(self):
-        for y in range(self.size):
-            for x in range(self.size):
-                cell = self.get_cell(x, y)
-                cell.transfer_state()
+    def cell(self, x: int, y: int) -> Cell:
+        """Get cell on board by position"""
+        return self.board[y][x]
 
-    def _calculate_life_expectancy(self):
+    def is_on_board(self, x, y):
+        """
+        Checks position is valid
+
+        @param x: horizontal position
+        @param y: vertical position
+
+        @return: True if in range, false if not
+        """
+        return 0 <= x < self.size and 0 <= y < self.size
+
+    def board_positions(self) -> list[Position]:
+        """
+        Gets all board positions grid positions one rwo at a time
+
+        @return: list of Position
+        """
+        positions = list()
         for y in range(self.size):
             for x in range(self.size):
-                cell = self.get_cell(x, y)
-                cell.get_next_state()
+                positions.append(Position(x, y))
+        return positions
 
     def __str__(self):
         """
         Overrides default string output to represent a simplified visual of what is generated
+
         @return: Generated visual showing a grid with cells denoting the state
         """
-        return self._picture_board()
+        return self._picture_it()
+
+    def _regenerate(self):
+        for pos in self.board_positions():
+            cell = self.cell(pos.x, pos.y)
+            cell.transfer_state()
+
+    def _calculate_life_expectancy(self):
+        for pos in self.board_positions():
+            cell = self.cell(pos.x, pos.y)
+            cell.get_next_state()
 
     def _initialise_board(self):
         for y in range(self.size):
@@ -53,48 +82,39 @@ class Generator:
                 col.append(Cell())
             self.board.append(col)
 
-    def _is_on_board(self, x, y):
-        return 0 <= x < self.size and 0 <= y < self.size
-
     def _initialise_neighbours(self):
-        for y in range(self.size):
-            for x in range(self.size):
-                current_cell = self.get_cell(x, y)
-                for neighbour in self._get_neighbours(x, y):
-                    current_cell.add_neighbour(neighbour)
+        for pos in self.board_positions():
+            current_cell = self.cell(pos.x, pos.y)
+            for neighbour in self._neighbours_by_position(pos.x, pos.y):
+                current_cell.add_neighbour(neighbour)
 
     def _seed(self, positions: list):
         for item in positions:
             x = item[0]
             y = item[1]
-            if not self._is_on_board(x, y):
+            if not self.is_on_board(x, y):
                 message = f"[{x}, {y}] should have values in the range of 0 - {self.size - 1}"
                 raise ValueError(message, x, y)
-            cell = self.get_cell(x, y)
+            cell = self.cell(x, y)
             if cell is not None:
                 cell.current_state = CellState.Alive
 
-    def _picture_board(self):
+    def _picture_it(self):
         result = ' | '
         for y in range(self.size):
             if y != 0:
                 result += f'{linesep} | '
             for x in range(self.size):
-                item = str(self.get_cell(x, y))
+                item = str(self.cell(x, y))
                 result += f'{item} | '
         return result
 
-    def get_cell(self, x: int, y: int):
-        """Get cell on board by position"""
-        return self.board[y][x]
-
-    def _get_neighbours(self, x, y):
-        neighbours = list()
+    def _neighbours_by_position(self, x, y) -> list[Cell]:
         y_range = [y - 1, y, y + 1]
         x_range = [x - 1, x, x + 1]
+        neighbours = list()
         for row in y_range:
             for col in x_range:
-                if (x != col or y != row) and self._is_on_board(col, row):
-                    neighbours.append(self.get_cell(col, row))
+                if (x != col or y != row) and self.is_on_board(col, row):
+                    neighbours.append(self.cell(col, row))
         return neighbours
-
