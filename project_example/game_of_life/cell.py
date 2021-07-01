@@ -3,7 +3,7 @@ from game_of_life.cell_state import CellState
 
 class Cell:
     """
-    Represent single unit of life
+    Represent single unit of life with all the rules that govern the game of life
     """
 
     def __init__(self, current_state=CellState.Dead):
@@ -33,6 +33,7 @@ class Cell:
         return self.next_state
 
     def transfer_state(self):
+        """Make the next state the current state by mutating the value"""
         self.current_state = self.next_state
 
     def add_neighbour(self, neighbour):

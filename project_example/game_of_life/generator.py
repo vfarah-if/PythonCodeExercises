@@ -61,7 +61,8 @@ class Generator:
         """
         Overrides default string output to represent a simplified visual of what is generated
 
-        @return: Generated visual showing a grid with cells denoting the state
+        @return: Generated visual showing a grid with cells denoting the state making this easier to
+        visually test
         """
         return self._picture_it()
 
@@ -99,7 +100,7 @@ class Generator:
             if cell is not None:
                 cell.current_state = CellState.Alive
 
-    def _picture_it(self):
+    def _picture_it(self) -> str:
         result = ' | '
         for y in range(self.size):
             if y != 0:
