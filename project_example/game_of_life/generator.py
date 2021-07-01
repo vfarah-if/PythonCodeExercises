@@ -56,31 +56,12 @@ class Generator:
     def _is_on_board(self, x, y):
         return 0 <= x < self.size and 0 <= y < self.size
 
-    # TODO: Reduce the size and duplication
     def _initialise_neighbours(self):
         for y in range(self.size):
             for x in range(self.size):
                 current_cell = self.get_cell(x, y)
-                above_y = y - 1
-                left_of_x = x - 1
-                right_of_x = x + 1
-                below_y = y + 1
-                if self._is_on_board(left_of_x, above_y):
-                    current_cell.add_neighbour(self.get_cell(left_of_x, above_y))
-                if self._is_on_board(x, above_y):
-                    current_cell.add_neighbour(self.get_cell(x, above_y))
-                if self._is_on_board(right_of_x, above_y):
-                    current_cell.add_neighbour(self.get_cell(right_of_x, above_y))
-                if self._is_on_board(right_of_x, y):
-                    current_cell.add_neighbour(self.get_cell(right_of_x, y))
-                if self._is_on_board(right_of_x, below_y):
-                    current_cell.add_neighbour(self.get_cell(right_of_x, below_y))
-                if self._is_on_board(x, below_y):
-                    current_cell.add_neighbour(self.get_cell(x, below_y))
-                if self._is_on_board(left_of_x, below_y):
-                    current_cell.add_neighbour(self.get_cell(left_of_x, below_y))
-                if self._is_on_board(left_of_x, y):
-                    current_cell.add_neighbour(self.get_cell(left_of_x, y))
+                for neighbour in self._get_neighbours(x, y):
+                    current_cell.add_neighbour(neighbour)
 
     def _seed(self, positions: list):
         for item in positions:
@@ -101,4 +82,31 @@ class Generator:
         return result
 
     def get_cell(self, x: int, y: int):
+        """Get cell on board by position"""
         return self.board[y][x]
+
+    # TODO: Reduce linear logic with algorithm
+    def _get_neighbours(self, x, y):
+        result = list()
+        above_y = y - 1
+        left_of_x = x - 1
+        right_of_x = x + 1
+        below_y = y + 1
+        if self._is_on_board(left_of_x, above_y):
+            result.append(self.get_cell(left_of_x, above_y))
+        if self._is_on_board(x, above_y):
+            result.append(self.get_cell(x, above_y))
+        if self._is_on_board(right_of_x, above_y):
+            result.append(self.get_cell(right_of_x, above_y))
+        if self._is_on_board(right_of_x, y):
+            result.append(self.get_cell(right_of_x, y))
+        if self._is_on_board(right_of_x, below_y):
+            result.append(self.get_cell(right_of_x, below_y))
+        if self._is_on_board(x, below_y):
+            result.append(self.get_cell(x, below_y))
+        if self._is_on_board(left_of_x, below_y):
+            result.append(self.get_cell(left_of_x, below_y))
+        if self._is_on_board(left_of_x, y):
+            result.append(self.get_cell(left_of_x, y))
+        return result;
+
