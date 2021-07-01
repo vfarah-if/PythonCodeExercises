@@ -16,6 +16,10 @@ class TestGeneratorShould:
             f" |   |   |   |   |   | "
         )
 
+    def test_raise_a_value_error_when_seed_outside_range(self):
+        with raises(ValueError):
+            Generator(2, [(0, 2)])
+
     def test_a_five_by_five_with_seeded_data(self):
         generator = Generator(5, [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0),
                                   (0, 1)

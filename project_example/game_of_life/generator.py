@@ -67,6 +67,9 @@ class Generator:
         for item in positions:
             x = item[0]
             y = item[1]
+            if not self._is_on_board(x, y):
+                message = f"[{x}, {y}] should have values in the range of 0 - {self.size - 1}"
+                raise ValueError(message, x, y)
             cell = self.get_cell(x, y)
             if cell is not None:
                 cell.current_state = CellState.Alive
@@ -85,28 +88,13 @@ class Generator:
         """Get cell on board by position"""
         return self.board[y][x]
 
-    # TODO: Reduce linear logic with algorithm
     def _get_neighbours(self, x, y):
         result = list()
-        above_y = y - 1
-        left_of_x = x - 1
-        right_of_x = x + 1
-        below_y = y + 1
-        if self._is_on_board(left_of_x, above_y):
-            result.append(self.get_cell(left_of_x, above_y))
-        if self._is_on_board(x, above_y):
-            result.append(self.get_cell(x, above_y))
-        if self._is_on_board(right_of_x, above_y):
-            result.append(self.get_cell(right_of_x, above_y))
-        if self._is_on_board(right_of_x, y):
-            result.append(self.get_cell(right_of_x, y))
-        if self._is_on_board(right_of_x, below_y):
-            result.append(self.get_cell(right_of_x, below_y))
-        if self._is_on_board(x, below_y):
-            result.append(self.get_cell(x, below_y))
-        if self._is_on_board(left_of_x, below_y):
-            result.append(self.get_cell(left_of_x, below_y))
-        if self._is_on_board(left_of_x, y):
-            result.append(self.get_cell(left_of_x, y))
-        return result;
+        y_range = [y - 1, y, y + 1]
+        x_range = [x - 1, x, x + 1]
+        for row in y_range:
+            for col in x_range:
+                if (x != col or y != row) and self._is_on_board(col, row):
+                    result.append(self.get_cell(col, row))
+        return result
 
