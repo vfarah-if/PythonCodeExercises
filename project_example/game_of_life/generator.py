@@ -89,12 +89,12 @@ class Generator:
         return self.board[y][x]
 
     def _get_neighbours(self, x, y):
-        result = list()
+        neighbours = list()
         y_range = [y - 1, y, y + 1]
         x_range = [x - 1, x, x + 1]
         for row in y_range:
             for col in x_range:
                 if (x != col or y != row) and self._is_on_board(col, row):
-                    result.append(self.get_cell(col, row))
-        return result
+                    neighbours.append(self.get_cell(col, row))
+        return neighbours
 
