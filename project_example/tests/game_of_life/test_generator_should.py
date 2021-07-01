@@ -139,4 +139,36 @@ class TestGeneratorShould:
 
         assert str(generator) == flip
 
+    def test_a_six_by_six_beacon_oscillator(self):
+        generator = Generator(6, [
+            (1, 1), (2, 1),
+            (1, 2), (2, 2),
+            (3, 3), (4, 3),
+            (3, 4), (4, 4),
+        ])
+        flip = (
+             f" |   |   |   |   |   |   | {linesep}"
+             f" |   | X | X |   |   |   | {linesep}"
+             f" |   | X | X |   |   |   | {linesep}"
+             f" |   |   |   | X | X |   | {linesep}"
+             f" |   |   |   | X | X |   | {linesep}"
+             f" |   |   |   |   |   |   | "
+        )
+        flop = (
+             f" |   |   |   |   |   |   | {linesep}"
+             f" |   | X | X |   |   |   | {linesep}"
+             f" |   | X |   |   |   |   | {linesep}"
+             f" |   |   |   |   | X |   | {linesep}"
+             f" |   |   |   | X | X |   | {linesep}"
+             f" |   |   |   |   |   |   | "
+        )
 
+        assert str(generator) == flip
+
+        generator.tick()
+
+        assert str(generator) == flop
+
+        generator.tick()
+
+        assert str(generator) == flip
