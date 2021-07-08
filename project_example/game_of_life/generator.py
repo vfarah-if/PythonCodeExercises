@@ -21,10 +21,10 @@ class Generator:
             raise ValueError('"size" must must be no less than 2 for life to exist', size)
         self.size = size
         self.board = list()
-        self.next_states = list()
         self._initialise_board()
-        self._initialise_next_states()
         self._initialise_neighbours()
+        self.next_states = list()
+        self._initialise_next_states()
         self._seed(seed_data)
 
     def tick(self):
