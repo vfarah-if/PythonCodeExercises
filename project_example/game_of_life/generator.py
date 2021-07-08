@@ -58,7 +58,7 @@ class Generator:
         """
         Overrides default string output to represent a simplified visual of what is generated
 
-        @return: Visual string showing a grid of cells showing the state making this easier to test
+        @return: Visual string showing a grid of cells and the state making this easier to test
         """
         result = ' | '
         for y in range(self.size):
