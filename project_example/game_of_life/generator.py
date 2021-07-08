@@ -70,13 +70,11 @@ class Generator:
 
     def _regenerate(self):
         for pos in self.board_positions():
-            cell = self.cell(pos.x, pos.y)
-            cell.current_state = self.next_states[pos.y][pos.x]
+            self.cell(pos.x, pos.y).current_state = self.next_states[pos.y][pos.x]
 
     def _calculate_life_expectancy(self):
         for pos in self.board_positions():
-            cell = self.cell(pos.x, pos.y)
-            self.next_states[pos.y][pos.x] = cell.next_state()
+            self.next_states[pos.y][pos.x] = self.cell(pos.x, pos.y).next_state()
 
     def _initialise_board(self):
         for y in range(self.size):
@@ -94,9 +92,8 @@ class Generator:
 
     def _initialise_neighbours(self):
         for pos in self.board_positions():
-            current_cell = self.cell(pos.x, pos.y)
             for neighbour in self._neighbours_by_position(pos.x, pos.y):
-                current_cell.add_neighbour(neighbour)
+                self.cell(pos.x, pos.y).add_neighbour(neighbour)
 
     def _seed(self, positions: list):
         for item in positions:
@@ -105,9 +102,7 @@ class Generator:
             if not self.is_on_board(x, y):
                 message = f"[{x}, {y}] should have values in the range of 0 - {self.size - 1}"
                 raise ValueError(message, x, y)
-            cell = self.cell(x, y)
-            if cell is not None:
-                cell.current_state = CellState.Alive
+            self.cell(x, y).current_state = CellState.Alive
 
     def _picture_it(self) -> str:
         result = ' | '
