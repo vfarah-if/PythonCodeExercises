@@ -73,7 +73,7 @@ class Generator:
         for pos in self.board_positions():
             self.cell(pos.x, pos.y).current_state = self.next_states[pos.y][pos.x]
 
-    def _calculate_life_expectancy(selrefactoref):
+    def _calculate_life_expectancy(self):
         for pos in self.board_positions():
             self.next_states[pos.y][pos.x] = self.cell(pos.x, pos.y).next_state()
 
