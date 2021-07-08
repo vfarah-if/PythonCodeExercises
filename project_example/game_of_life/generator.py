@@ -34,7 +34,7 @@ class Generator:
         """Get cell on board by position"""
         return self.board[y][x]
 
-    def is_on_board(self, x, y) -> bool:
+    def is_on_board(self, x: int, y: int) -> bool:
         """
         Checks position is valid
 
@@ -44,7 +44,7 @@ class Generator:
 
     def board_positions(self) -> list[Position]:
         """
-        Gets all board positions grid positions one rwo at a time
+        Gets all board positions grid positions one row at a time
 
         @return: list of Position
         """
@@ -91,7 +91,7 @@ class Generator:
                 raise ValueError(message, x, y)
             self.cell(x, y).current_state = CellState.Alive
 
-    def _neighbours_by_position(self, x, y) -> list[Cell]:
+    def _neighbours_by_position(self, x: int, y: int) -> list[Cell]:
         y_range = [y - 1, y, y + 1]
         x_range = [x - 1, x, x + 1]
         neighbours = list()
