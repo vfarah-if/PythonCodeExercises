@@ -34,12 +34,9 @@ class Generator:
         """Get cell on board by position"""
         return self.board[y][x]
 
-    def is_on_board(self, x, y):
+    def is_on_board(self, x, y) -> bool:
         """
         Checks position is valid
-
-        @param x: horizontal position
-        @param y: vertical position
 
         @return: True if in range, false if not
         """
@@ -57,12 +54,11 @@ class Generator:
                 positions.append(Position(x, y))
         return positions
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Overrides default string output to represent a simplified visual of what is generated
 
-        @return: Generated visual showing a grid with cells denoting the state making this easier to
-        visually test
+        @return: Visual string showing a grid of cells showing the state making this easier to test
         """
         result = ' | '
         for y in range(self.size):
@@ -77,7 +73,7 @@ class Generator:
         for pos in self.board_positions():
             self.cell(pos.x, pos.y).current_state = self.next_states[pos.y][pos.x]
 
-    def _calculate_life_expectancy(self):
+    def _calculate_life_expectancy(selrefactoref):
         for pos in self.board_positions():
             self.next_states[pos.y][pos.x] = self.cell(pos.x, pos.y).next_state()
 
