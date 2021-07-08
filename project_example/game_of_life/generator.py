@@ -20,11 +20,9 @@ class Generator:
         if size < 2:
             raise ValueError('"size" must must be no less than 2 for life to exist', size)
         self.size = size
-        self.board = list()
-        self._initialise_board()
+        self.board = [[Cell() for _ in range(self.size)] for _ in range(self.size)]
+        self.next_states = [[CellState.Dead] * self.size for _ in range(self.size)]
         self._initialise_neighbours()
-        self.next_states = list()
-        self._initialise_next_states()
         self._seed(seed_data)
 
     def tick(self):
@@ -75,20 +73,6 @@ class Generator:
     def _calculate_life_expectancy(self):
         for pos in self.board_positions():
             self.next_states[pos.y][pos.x] = self.cell(pos.x, pos.y).next_state()
-
-    def _initialise_board(self):
-        for y in range(self.size):
-            col = list()
-            for x in range(self.size):
-                col.append(Cell())
-            self.board.append(col)
-
-    def _initialise_next_states(self):
-        for y in range(self.size):
-            initial_states = list()
-            for x in range(self.size):
-                initial_states.append(CellState.Dead)
-            self.next_states.append(initial_states)
 
     def _initialise_neighbours(self):
         for pos in self.board_positions():
