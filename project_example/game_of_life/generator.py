@@ -64,7 +64,14 @@ class Generator:
         @return: Generated visual showing a grid with cells denoting the state making this easier to
         visually test
         """
-        return self._picture_it()
+        result = ' | '
+        for y in range(self.size):
+            if y != 0:
+                result += f'{linesep} | '
+            for x in range(self.size):
+                item = str(self.cell(x, y))
+                result += f'{item} | '
+        return result
 
     def _regenerate(self):
         for pos in self.board_positions():
@@ -87,16 +94,6 @@ class Generator:
                 message = f"[{x}, {y}] should have values in the range of 0 - {self.size - 1}"
                 raise ValueError(message, x, y)
             self.cell(x, y).current_state = CellState.Alive
-
-    def _picture_it(self) -> str:
-        result = ' | '
-        for y in range(self.size):
-            if y != 0:
-                result += f'{linesep} | '
-            for x in range(self.size):
-                item = str(self.cell(x, y))
-                result += f'{item} | '
-        return result
 
     def _neighbours_by_position(self, x, y) -> list[Cell]:
         y_range = [y - 1, y, y + 1]
