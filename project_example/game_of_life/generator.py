@@ -21,7 +21,9 @@ class Generator:
             raise ValueError('"size" must must be no less than 2 for life to exist', size)
         self.size = size
         self.board = list()
+        self.next_states = list()
         self._initialise_board()
+        self._initialise_next_states()
         self._initialise_neighbours()
         self._seed(seed_data)
 
@@ -69,12 +71,12 @@ class Generator:
     def _regenerate(self):
         for pos in self.board_positions():
             cell = self.cell(pos.x, pos.y)
-            cell.transfer_state()
+            cell.current_state = self.next_states[pos.y][pos.x]
 
     def _calculate_life_expectancy(self):
         for pos in self.board_positions():
             cell = self.cell(pos.x, pos.y)
-            cell.get_next_state()
+            self.next_states[pos.y][pos.x] = cell.next_state()
 
     def _initialise_board(self):
         for y in range(self.size):
@@ -82,6 +84,13 @@ class Generator:
             for x in range(self.size):
                 col.append(Cell())
             self.board.append(col)
+
+    def _initialise_next_states(self):
+        for y in range(self.size):
+            initial_states = list()
+            for x in range(self.size):
+                initial_states.append(CellState.Dead)
+            self.next_states.append(initial_states)
 
     def _initialise_neighbours(self):
         for pos in self.board_positions():
