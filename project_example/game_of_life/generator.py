@@ -22,7 +22,7 @@ class Generator:
         self.size = size
         self.board = [[Cell() for _ in range(self.size)] for _ in range(self.size)]
         self.next_states = [[CellState.Dead] * self.size for _ in range(self.size)]
-        self._initialise_neighbours()
+        self._setup_neighbours()
         self._seed(seed_data)
 
     def tick(self):
@@ -81,7 +81,7 @@ class Generator:
         for pos in self.board_positions():
             self.next_states[pos.y][pos.x] = self.cell(pos.x, pos.y).next_state()
 
-    def _initialise_neighbours(self):
+    def _setup_neighbours(self):
         for pos in self.board_positions():
             for neighbour in self._neighbours_by_position(pos.x, pos.y):
                 self.cell(pos.x, pos.y).add_neighbour(neighbour)
