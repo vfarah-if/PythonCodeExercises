@@ -17,14 +17,14 @@ class TestCellShould:
 
         assert dead_cell.next_state() is CellState.Alive
 
-    def test_killing_live_cell_when_fewer_than_two_live_neighbours_case_underpopulation(self, living_cell):
+    def test_killing_live_cell_when_fewer_than_two_live_neighbours_cause_underpopulation(self, living_cell):
         living_cell.add_neighbour(Cell(CellState.Dead))
         living_cell.add_neighbour(Cell(CellState.Dead))
         living_cell.add_neighbour(Cell(CellState.Dead))
 
         assert living_cell.next_state() is CellState.Dead
 
-    def test_live_cell_with_two_live_neighbours_stays_alive_for_next_generation(self, living_cell):
+    def test_live_cell_with_two_live_neighbours_stays_alive_by_thriving_in_ideal_conditions(self, living_cell):
         living_cell.add_neighbour(Cell(CellState.Alive))
         living_cell.add_neighbour(Cell(CellState.Alive))
         living_cell.add_neighbour(Cell(CellState.Dead))

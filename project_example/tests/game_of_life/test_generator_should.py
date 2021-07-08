@@ -1,5 +1,5 @@
 from _pytest.python_api import raises
-from os import linesep
+from os import linesep as eol
 
 from game_of_life.generator import Generator
 
@@ -9,10 +9,10 @@ class TestGeneratorShould:
         generator = Generator(5)
 
         assert str(generator) == (
-            f" |   |   |   |   |   | {linesep}"
-            f" |   |   |   |   |   | {linesep}"
-            f" |   |   |   |   |   | {linesep}"
-            f" |   |   |   |   |   | {linesep}"
+            f" |   |   |   |   |   | {eol}"
+            f" |   |   |   |   |   | {eol}"
+            f" |   |   |   |   |   | {eol}"
+            f" |   |   |   |   |   | {eol}"
             f" |   |   |   |   |   | "
         )
 
@@ -26,10 +26,10 @@ class TestGeneratorShould:
                                   ])
 
         assert str(generator) == (
-            f" | X | X | X | X | X | {linesep}"
-            f" | X |   |   |   |   | {linesep}"
-            f" |   |   |   |   |   | {linesep}"
-            f" |   |   |   |   |   | {linesep}"
+            f" | X | X | X | X | X | {eol}"
+            f" | X |   |   |   |   | {eol}"
+            f" |   |   |   |   |   | {eol}"
+            f" |   |   |   |   |   | {eol}"
             f" |   |   |   |   |   | "
         )
 
@@ -46,14 +46,14 @@ class TestGeneratorShould:
             (0, 0), (1, 1),
         ])
         assert str(generator) == (
-            f" | X |   | {linesep}"
+            f" | X |   | {eol}"
             f" |   | X | "
         )
 
         generator.tick()
 
         assert str(generator) == (
-            f" |   |   | {linesep}"
+            f" |   |   | {eol}"
             f" |   |   | "
         )
 
@@ -62,16 +62,16 @@ class TestGeneratorShould:
             (0, 0), (1, 1), (1, 2)
         ])
         assert str(generator) == (
-            f" | X |   |   | {linesep}"
-            f" |   | X |   | {linesep}"
+            f" | X |   |   | {eol}"
+            f" |   | X |   | {eol}"
             f" |   | X |   | "
         )
 
         generator.tick()
 
         assert str(generator) == (
-            f" |   |   |   | {linesep}"
-            f" | X | X |   | {linesep}"
+            f" |   |   |   | {eol}"
+            f" | X | X |   | {eol}"
             f" |   |   |   | "
         )
 
@@ -80,16 +80,16 @@ class TestGeneratorShould:
             (0, 0), (0, 1), (2, 2)
         ])
         assert str(generator) == (
-            f" | X |   |   | {linesep}"
-            f" | X |   |   | {linesep}"
+            f" | X |   |   | {eol}"
+            f" | X |   |   | {eol}"
             f" |   |   | X | "
         )
 
         generator.tick()
 
         assert str(generator) == (
-            f" |   |   |   | {linesep}"
-            f" |   | X |   | {linesep}"
+            f" |   |   |   | {eol}"
+            f" |   | X |   | {eol}"
             f" |   |   |   | "
         )
 
@@ -99,18 +99,18 @@ class TestGeneratorShould:
             (1, 2), (2, 2),
         ])
         assert str(generator) == (
-            f" |   |   |   |   | {linesep}"
-            f" |   | X | X |   | {linesep}"
-            f" |   | X | X |   | {linesep}"
+            f" |   |   |   |   | {eol}"
+            f" |   | X | X |   | {eol}"
+            f" |   | X | X |   | {eol}"
             f" |   |   |   |   | "
         )
 
         generator.tick()
 
         assert str(generator) == (
-            f" |   |   |   |   | {linesep}"
-            f" |   | X | X |   | {linesep}"
-            f" |   | X | X |   | {linesep}"
+            f" |   |   |   |   | {eol}"
+            f" |   | X | X |   | {eol}"
+            f" |   | X | X |   | {eol}"
             f" |   |   |   |   | "
         )
 
@@ -119,13 +119,13 @@ class TestGeneratorShould:
             (0, 1), (1, 1), (2, 1),
         ])
         flip = (
-            f" |   |   |   | {linesep}"
-            f" | X | X | X | {linesep}"
+            f" |   |   |   | {eol}"
+            f" | X | X | X | {eol}"
             f" |   |   |   | "
         )
         flop = (
-            f" |   | X |   | {linesep}"
-            f" |   | X |   | {linesep}"
+            f" |   | X |   | {eol}"
+            f" |   | X |   | {eol}"
             f" |   | X |   | "
         )
         assert str(generator) == flip
@@ -144,19 +144,19 @@ class TestGeneratorShould:
             (3, 4), (4, 4),
         ])
         flip = (
-             f" |   |   |   |   |   |   | {linesep}"
-             f" |   | X | X |   |   |   | {linesep}"
-             f" |   | X | X |   |   |   | {linesep}"
-             f" |   |   |   | X | X |   | {linesep}"
-             f" |   |   |   | X | X |   | {linesep}"
+             f" |   |   |   |   |   |   | {eol}"
+             f" |   | X | X |   |   |   | {eol}"
+             f" |   | X | X |   |   |   | {eol}"
+             f" |   |   |   | X | X |   | {eol}"
+             f" |   |   |   | X | X |   | {eol}"
              f" |   |   |   |   |   |   | "
         )
         flop = (
-             f" |   |   |   |   |   |   | {linesep}"
-             f" |   | X | X |   |   |   | {linesep}"
-             f" |   | X |   |   |   |   | {linesep}"
-             f" |   |   |   |   | X |   | {linesep}"
-             f" |   |   |   | X | X |   | {linesep}"
+             f" |   |   |   |   |   |   | {eol}"
+             f" |   | X | X |   |   |   | {eol}"
+             f" |   | X |   |   |   |   | {eol}"
+             f" |   |   |   |   | X |   | {eol}"
+             f" |   |   |   | X | X |   | {eol}"
              f" |   |   |   |   |   |   | "
         )
         assert str(generator) == flip
