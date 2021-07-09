@@ -13,19 +13,19 @@ class Cell:
     def next_state(self) -> CellState:
         """Pure calculation for the state of the Cell based on its exact neighbours"""
         def is_overpopulated():
-            return live_count > 3
+            return alive_cell_count > 3
 
         def is_underpopulated():
-            return live_count < 2
+            return alive_cell_count < 2
 
         def is_thriving():
-            return self.current_state is CellState.Alive and live_count == 2
+            return self.current_state is CellState.Alive and alive_cell_count == 2
 
         def is_fertile():
-            return self.current_state is CellState.Dead and live_count == 3
+            return self.current_state is CellState.Dead and alive_cell_count == 3
 
         next_state = self.current_state
-        live_count = len([neighbour for neighbour in self.neighbours if neighbour.current_state is CellState.Alive])
+        alive_cell_count = len([neighbour for neighbour in self.neighbours if neighbour.current_state is CellState.Alive])
         if is_thriving() or is_fertile():
             next_state = CellState.Alive
         if is_underpopulated() or is_overpopulated():
