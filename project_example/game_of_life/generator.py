@@ -82,7 +82,7 @@ class Generator:
         for pos in self.board_positions():
             self.cell(pos.x, pos.y).add_neighbours(self._neighbours_by_position(pos.x, pos.y))
 
-    def _seed(self, positions: list):
+    def _seed(self, positions: list[(int, int)]):
         for item in positions:
             x = item[0]
             y = item[1]

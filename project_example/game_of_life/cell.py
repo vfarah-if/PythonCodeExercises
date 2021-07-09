@@ -11,6 +11,7 @@ class Cell:
         self.neighbours = list()
 
     def next_state(self) -> CellState:
+        """Pure calculation for the state of the Cell based on its exact neighbours"""
         def is_overpopulated():
             return live_count > 3
 
@@ -32,7 +33,7 @@ class Cell:
         return next_state
 
     def add_neighbours(self, neighbours: list):
-        """Append neighbours list of cells"""
+        """Append a list of Cells to the neighbours list"""
         for neighbour in neighbours:
             self.neighbours.append(neighbour)
 
