@@ -31,9 +31,10 @@ class Cell:
             next_state = CellState.Dead
         return next_state
 
-    def add_neighbour(self, neighbour):
-        """Append neighbour"""
-        self.neighbours.append(neighbour)
+    def add_neighbours(self, neighbours: list):
+        """Append neighbours list of cells"""
+        for neighbour in neighbours:
+            self.neighbours.append(neighbour)
 
     def __str__(self):
         return 'X' if self.current_state is CellState.Alive else ' '

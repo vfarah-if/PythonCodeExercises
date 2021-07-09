@@ -1,8 +1,9 @@
-from os import linesep
+from os import linesep as eol
 
 from game_of_life.cell import Cell
 from game_of_life.cell_state import CellState
 from game_of_life.position import Position
+from game_of_life.string_builder import StringBuilder
 
 
 class Generator:
@@ -60,14 +61,14 @@ class Generator:
 
         @return: Visual string showing a grid of cells and the state making this easier to test
         """
-        result = ' | '
+        result = StringBuilder(' | ')
         for y in range(self.size):
             if y != 0:
-                result += f'{linesep} | '
+                result.add(f'{eol} | ')
             for x in range(self.size):
                 item = str(self.cell(x, y))
-                result += f'{item} | '
-        return result
+                result.add(f'{item} | ')
+        return result.to_string()
 
     def _regenerate(self):
         for pos in self.board_positions():
@@ -79,8 +80,7 @@ class Generator:
 
     def _setup_neighbours(self):
         for pos in self.board_positions():
-            for neighbour in self._neighbours_by_position(pos.x, pos.y):
-                self.cell(pos.x, pos.y).add_neighbour(neighbour)
+            self.cell(pos.x, pos.y).add_neighbours(self._neighbours_by_position(pos.x, pos.y))
 
     def _seed(self, positions: list):
         for item in positions:
