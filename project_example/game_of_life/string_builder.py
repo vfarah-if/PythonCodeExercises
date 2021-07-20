@@ -1,3 +1,5 @@
+from os import linesep as eol
+
 from io import StringIO
 
 
@@ -12,6 +14,11 @@ class StringBuilder:
 
     def add(self, value):
         self._logger.write(value)
+        return self
+
+    def newline(self):
+        self.add(eol)
+        return self
 
     def to_string(self):
         return str(self)

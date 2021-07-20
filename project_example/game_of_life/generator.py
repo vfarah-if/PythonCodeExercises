@@ -1,5 +1,3 @@
-from os import linesep as eol
-
 from game_of_life.cell import Cell
 from game_of_life.cell_state import CellState
 from game_of_life.position import Position
@@ -64,10 +62,9 @@ class Generator:
         result = StringBuilder(' | ')
         for y in range(self.size):
             if y != 0:
-                result.add(f'{eol} | ')
+                result.newline().add(' | ')
             for x in range(self.size):
-                item = str(self.cell(x, y))
-                result.add(f'{item} | ')
+                result.add(f'{self.cell(x, y)} | ')
         return result.to_string()
 
     def _regenerate(self):
