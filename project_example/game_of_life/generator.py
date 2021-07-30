@@ -5,17 +5,8 @@ from game_of_life.string_builder import StringBuilder
 
 
 class Generator:
-    """
-    Game of life generator
-    """
 
     def __init__(self, size: int, seed_data: list = list()):
-        """
-        Constructor
-
-        @param size: Board Size or matrix setting for x and y and must be minimum 2
-        @param seed_data: List of tuples denoting x, y positions
-        """
         if size < 2:
             raise ValueError('"size" must must be no less than 2 for life to exist', size)
         self.size = size
@@ -25,28 +16,16 @@ class Generator:
         self._seed(seed_data)
 
     def tick(self):
-        """Regenerates all data in the cells generating the patterns from the seeded data"""
         self._calculate_life_expectancy()
         self._regenerate()
 
     def cell(self, x: int, y: int) -> Cell:
-        """Get cell on board by position"""
         return self.board[y][x]
 
     def is_on_board(self, x: int, y: int) -> bool:
-        """
-        Checks position is valid
-
-        @return: True if in range, false if not
-        """
         return 0 <= x < self.size and 0 <= y < self.size
 
     def board_positions(self) -> list[Position]:
-        """
-        Gets all board positions grid positions one row at a time
-
-        @return: list of Position
-        """
         positions = list()
         for y in range(self.size):
             for x in range(self.size):
@@ -54,11 +33,6 @@ class Generator:
         return positions
 
     def __str__(self) -> str:
-        """
-        Overrides default string output to represent a simplified visual of what is generated
-
-        @return: Visual string showing a grid of cells and the state making this easier to test
-        """
         result = StringBuilder(' | ')
         for y in range(self.size):
             if y != 0:
