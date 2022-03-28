@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/usr/local/bin/python3"
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.testing.unittestArgs": ["-v", "-s", ".", "-p", "test*.py"],
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["."]
 }
