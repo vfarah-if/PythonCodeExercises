@@ -18,15 +18,15 @@ def printer(a, b):
 
 
 def shared_task(bind=False, priority=1, queue='long-running'):
-    def wrapper_repeat(func):
+    def decorator_shared_task(func):
         @functools.wraps(func)
-        def wrapper_inner(*args, **kwargs):
+        def wrapper(*args, **kwargs):
             print('Before running task', args, kwargs, bind, priority, queue)
             result = func(*args, **kwargs)
             print('After running task', result)
             return result
-        return wrapper_inner
-    return wrapper_repeat
+        return wrapper
+    return decorator_shared_task
 
 
 
