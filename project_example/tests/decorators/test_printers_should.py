@@ -20,5 +20,5 @@ def test_task_execution_of_handler():
 
     actual = handler(1, 2)
 
-    assert actualOutput.getvalue() == "Before running task (1, 2) {} {'bind': True, 'priority': 9, 'queue': 'short-running'}\nRunning task 1 2\nAfter running task 3\n"
+    assert actualOutput.getvalue() == "Before running task (1, 2) {} True 9 short-running\nRunning task 1 2\nAfter running task 3\n"
     assert actual == 3

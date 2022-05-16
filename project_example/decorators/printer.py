@@ -1,3 +1,4 @@
+import functools
 def my_decorator(arg):
     def inner_decorator(func):
         def wrapped(*args, **kwargs):
@@ -16,18 +17,17 @@ def printer(a, b):
     return a + b
 
 
-def shared_task(**options):
-    def create_shared_task(bind=False, priority=1, queue='long-running'):
-        def _expose_caller(func):
-            def _expose_caller_args(*args, **kwargs):
-                print('Before running task', args, kwargs, bind, priority, queue)
-                result = func(*args, **kwargs)
-                print('After running task', result)
-                return result
-            return _expose_caller_args
-        return _expose_caller
+def shared_task(bind=False, priority=1, queue='long-running'):
+    def wrapper_repeat(func):
+        @functools.wraps(func)
+        def wrapper_inner(*args, **kwargs):
+            print('Before running task', args, kwargs, bind, priority, queue)
+            result = func(*args, **kwargs)
+            print('After running task', result)
+            return result
+        return wrapper_inner
+    return wrapper_repeat
 
-    return create_shared_task(**options)
 
 
 @shared_task(bind=True, priority=9, queue='short-running')
